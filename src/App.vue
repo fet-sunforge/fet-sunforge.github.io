@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup lang="js">
 import { CalendarDays, Landmark, Clock } from 'lucide-vue-next';
 import { Countdown } from 'vue3-flip-countdown';
 </script>
