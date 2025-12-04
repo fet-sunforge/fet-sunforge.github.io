@@ -3,7 +3,7 @@ import GlobalMenu from "@/components/GlobalMenu.vue";
 </script>
 
 <template>
-  <div class="flex flex-col w-screen h-screen bg-slate-700 items-center text-2xl text-white overflow-auto pt-10 pb-10">
+  <div class="flex flex-col w-screen h-screen bg-primary text-primary-foreground items-center text-2xl overflow-auto pt-10 pb-10">
     <GlobalMenu>About SUNForge Fest</GlobalMenu>
     <div class="flex flex-col items-center gap-3 max-w-6xl w-full px-10" style="margin-top: auto; margin-bottom: auto;">
       <img src="@/assets/logo.png" class="w-full max-w-xl" alt="Logo" />
