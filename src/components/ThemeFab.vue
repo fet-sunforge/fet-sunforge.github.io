@@ -7,12 +7,12 @@ const theme = ref<'light' | 'dark'>('dark')
 // Load saved theme on mount
 onMounted(() => {
   const saved = localStorage.getItem('theme')
-  if (saved === 'dark') {
-    theme.value = 'dark'
-    document.documentElement.classList.add('dark')
-  } else {
+  if (saved === 'light') {
     theme.value = 'light'
     document.documentElement.classList.remove('dark')
+  } else {
+    theme.value = 'dark'
+    document.documentElement.classList.add('dark')
   }
 })
 
