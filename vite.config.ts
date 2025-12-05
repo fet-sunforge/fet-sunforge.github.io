@@ -21,7 +21,7 @@ export default defineConfig({
         about: path.resolve(__dirname, 'about.html'),
         // fyp: path.resolve(__dirname, 'fyp.html'),
         // idp: path.resolve(__dirname, 'idp.html'),
-        // sed: path.resolve(__dirname, 'sed.html'),
+        sed: path.resolve(__dirname, 'sed.html'),
         // pmed: path.resolve(__dirname, 'pmed.html'),
         // dit: path.resolve(__dirname, 'dit.html')
       }
