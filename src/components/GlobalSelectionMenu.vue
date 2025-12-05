@@ -5,10 +5,8 @@ import { ref, onMounted, computed } from 'vue';
 const pages = [
   { name: 'Home', path: '/' },
   { name: 'About SUNForge Fest', path: '/about' },
-  { name: 'Final Year Projects (1)', path: '/fyp1' },
-  { name: 'Final Year Projects (2)', path: '/fyp2' },
-  { name: 'Integrated Design Projects (1)', path: '/idp1' },
-  { name: 'Integrated Design Projects (2)', path: '/idp2' },
+  { name: 'Final Year Projects', path: '/fyp' },
+  { name: 'Integrated Design Projects', path: '/idp' },
   { name: 'Sustainable Engineering Design', path: '/sed' },
   { name: 'Project Management and Engineering Design', path: '/pmed' },
   { name: 'Design and Innovative Thinking', path: '/dit' },
@@ -45,7 +43,7 @@ import {
   DrawerTrigger,
 } from '@/components/ui/drawer'
 
-const isDesktop = useMediaQuery('(min-width: 640px)')
+const isDesktop = useMediaQuery('(min-width: 0px)')
 
 const Modal = computed(() => ({
   Root: isDesktop.value ? Dialog : Drawer,
@@ -67,6 +65,8 @@ import {
   ItemTitle,
   ItemSeparator,
 } from '@/components/ui/item'
+
+import { ScrollArea } from '@/components/ui/scroll-area';
 </script>
 
 <template>
@@ -80,12 +80,12 @@ import {
         { 'px-2 pb-8 *:px-4': !isDesktop },
       ]"
     >
-       <component :is="Modal.Header" class="sr-only">
+      <component :is="Modal.Header" class="sr-only">
         <component :is="Modal.Title"></component>
         <component :is="Modal.Description"></component>
       </component>
 
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 overflow-y-auto max-h-[70vh]">
         <div class="flex w-full max-w-md flex-col gap-0">
           <template v-for="(page, index) in pages" :key="page.path">
             <Item as-child>
@@ -113,6 +113,10 @@ import {
           </Button>
         </component>
       </component>  -->
+      <div class="absolute -top-2 -left-2 w-1/5 h-1/9 border-t-3 border-l-3 border-muted-foreground"></div>
+      <div class="absolute -bottom-2 -left-2 w-1/5 h-1/9 border-b-3 border-l-3 border-muted-foreground"></div>
+      <div class="absolute -top-2 -right-2 w-1/5 h-1/9 border-t-3 border-r-3 border-muted-foreground"></div>
+      <div class="absolute -bottom-2 -right-2 w-1/5 h-1/9 border-b-3 border-r-3 border-muted-foreground"></div>
     </component>
   </component>
 </template>
