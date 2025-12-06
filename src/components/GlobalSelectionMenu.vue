@@ -65,8 +65,6 @@ import {
   ItemTitle,
   ItemSeparator,
 } from '@/components/ui/item'
-
-import { ScrollArea } from '@/components/ui/scroll-area';
 </script>
 
 <template>
