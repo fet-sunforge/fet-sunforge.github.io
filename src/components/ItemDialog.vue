@@ -8,9 +8,12 @@ import {
   DialogFooter
 } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
+import type { Course, Project } from "@/interfaces";
+import CourseDescription from "@/components/CourseDescription.vue";
 
 defineProps<{
-  item: any
+  course: Course
+  item: Project
   open: boolean
 }>()
 
@@ -28,6 +31,7 @@ defineEmits(["close"])
         transition="spring"
         class="p-6 space-y-3"
       >
+        <CourseDescription :course="course" />
         <DialogHeader>
           <DialogTitle>{{ item.title }}</DialogTitle>
           <DialogDescription>{{ item.pic.join(", ") }}</DialogDescription>

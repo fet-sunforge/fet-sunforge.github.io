@@ -16,6 +16,7 @@ export function useDialogWithURL<T extends Record<string, any>>(
     itemName = "i",
   } = options
 
+  const selectedCourse = ref<Course | null>(null)
   const selectedItem = ref<Project | null>(null)
   const dialogOpen = ref(false)
 
@@ -27,6 +28,7 @@ export function useDialogWithURL<T extends Record<string, any>>(
 
     if (!itemId) {
       dialogOpen.value = false
+      selectedCourse.value = null
       selectedItem.value = null
       return
     }
@@ -34,21 +36,24 @@ export function useDialogWithURL<T extends Record<string, any>>(
     const sid: number = !sectionId ? 0 : isNaN(Number(sectionId)) ? 0 : Number(sectionId)
     if (sid < 0 || sid >= items.length) {
       dialogOpen.value = false
+      selectedCourse.value = null
       selectedItem.value = null
       return
     }
     const iid: number = isNaN(Number(itemId)) ? 0 : Number(itemId)
 
-    const found = items[sid]?.projects[iid] as Project | null
+    const found = items[sid]?.projects[iid]
     if (found) {
-      selectedItem.value = found
+      selectedCourse.value = items[sid] as Course
+      selectedItem.value = found as Project
       dialogOpen.value = true
     }
   }
 
   // open dialog + set URL param
   function openDialog(sectionIdx: number, itemIdx: number) {
-    selectedItem.value = items[sectionIdx]?.projects[itemIdx] as Project | null
+    selectedCourse.value = items[sectionIdx] as Course
+    selectedItem.value = items[sectionIdx]?.projects[itemIdx] as Project
     dialogOpen.value = true
 
     const url = new URL(window.location.href)
@@ -60,6 +65,7 @@ export function useDialogWithURL<T extends Record<string, any>>(
   // close dialog + remove URL param
   function closeDialog() {
     dialogOpen.value = false
+    selectedCourse.value = null
     selectedItem.value = null
 
     const url = new URL(window.location.href)
@@ -83,6 +89,7 @@ export function useDialogWithURL<T extends Record<string, any>>(
   })
 
   return {
+    selectedCourse,
     selectedItem,
     dialogOpen,
     openDialog,

@@ -9,7 +9,23 @@ import { ref } from 'vue';
 import { useDialogWithURL } from '@/composables/useDialogWithURL';
 
 const courses = ref([{
-  name: "Sustainable Engineering Design",
+  name: "Sustainable Engineering Design 1",
+  description: "This course focuses on sustainable engineering design principles and practices.",
+  projects: [{
+    title: 'project 1',
+    desc: 'abstract 1',
+    pic: ['person1', 'person2']
+  }, {
+    title: 'project 2',
+    desc: 'abstract 2',
+    pic: ['person3']
+  }, {
+    title: 'project 3',
+    desc: 'abstract 3',
+    pic: ['person5', 'person6', 'person7', 'person8']
+  }]
+}, {
+  name: "Sustainable Engineering Design 2",
   description: "This course focuses on sustainable engineering design principles and practices.",
   projects: [{
     title: 'project 1',
@@ -27,6 +43,7 @@ const courses = ref([{
 }] as Array<Course>);
 
 const {
+  selectedCourse,
   selectedItem,
   dialogOpen,
   openDialog,
@@ -55,7 +72,8 @@ const {
       </template>
     </div>
     <ItemDialog
-     v-if="selectedItem"
+     v-if="selectedItem && selectedCourse"
+     :course="selectedCourse"
      :item="selectedItem"
      :open="dialogOpen"
      @close="closeDialog"
