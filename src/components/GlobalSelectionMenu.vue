@@ -21,40 +21,16 @@ const activePage = computed(() => { return pages.find(page => page.path === curr
 const activePageName = computed(() => activePage.value?.name ?? '')
 
 // use drawer/dialog
-import { useMediaQuery } from '@vueuse/core'
 import {
   Dialog,
-  DialogClose,
+  // DialogClose,
   DialogContent,
   DialogDescription,
-  DialogFooter,
+  // DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer'
-
-const isDesktop = useMediaQuery('(min-width: 0px)')
-
-const Modal = computed(() => ({
-  Root: isDesktop.value ? Dialog : Drawer,
-  Trigger: isDesktop.value ? DialogTrigger : DrawerTrigger,
-  Content: isDesktop.value ? DialogContent : DrawerContent,
-  Header: isDesktop.value ? DialogHeader : DrawerHeader,
-  Title: isDesktop.value ? DialogTitle : DrawerTitle,
-  Description: isDesktop.value ? DialogDescription : DrawerDescription,
-  Footer: isDesktop.value ? DialogFooter : DrawerFooter,
-  Close: isDesktop.value ? DialogClose : DrawerClose,
-}))
 
 // item list
 import {
@@ -68,20 +44,17 @@ import {
 </script>
 
 <template>
-  <component :is="Modal.Root">
-    <component :is="Modal.Trigger" as-child>
+  <Dialog>
+    <DialogTrigger as-child>
       <GlobalMenu>{{ activePageName }}</GlobalMenu>
-    </component>
-    <component
-      :is="Modal.Content"
-      class="sm:max-w-md" :class="[
-        { 'px-2 pb-8 *:px-4': !isDesktop },
-      ]"
+    </DialogTrigger>
+    <DialogContent
+      class="sm:max-w-md"
     >
-      <component :is="Modal.Header" class="sr-only">
-        <component :is="Modal.Title"></component>
-        <component :is="Modal.Description"></component>
-      </component>
+      <DialogHeader class="sr-only">
+        <DialogTitle></DialogTitle>
+        <DialogDescription></DialogDescription>
+      </DialogHeader>
 
       <div class="flex items-center gap-2 overflow-y-auto max-h-[70vh]">
         <div class="flex w-full max-w-md flex-col gap-0">
@@ -115,6 +88,6 @@ import {
       <div class="absolute -bottom-2 -left-2 w-1/5 h-1/9 border-b-3 border-l-3 border-muted-foreground"></div>
       <div class="absolute -top-2 -right-2 w-1/5 h-1/9 border-t-3 border-r-3 border-muted-foreground"></div>
       <div class="absolute -bottom-2 -right-2 w-1/5 h-1/9 border-b-3 border-r-3 border-muted-foreground"></div>
-    </component>
-  </component>
+    </DialogContent>
+  </Dialog>
 </template>
