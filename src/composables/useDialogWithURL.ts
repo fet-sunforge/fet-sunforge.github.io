@@ -7,7 +7,7 @@ interface UseDialogWithURLOptions {
   itemName?: string           // default: "item"
 }
 
-export function useDialogWithURL<T extends Record<string, any>>(
+export function useDialogWithURL(
   options: UseDialogWithURLOptions
 ) {
   const {
