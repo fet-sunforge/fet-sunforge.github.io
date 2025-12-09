@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import GlobalMenu from '@/components/GlobalMenu.vue'
 import { ref, onMounted, computed } from 'vue';
+import { HouseIcon, InfoIcon } from 'lucide-vue-next';
 
 const pages = [
-  { name: 'Home', path: '/' },
-  { name: 'About SUNForge Fest', path: '/about' },
-  { name: 'Final Year Projects', path: '/fyp' },
-  { name: 'Integrated Design Projects', path: '/idp' },
-  { name: 'Sustainable Engineering Design', path: '/sed' },
-  { name: 'Project Management and Engineering Design', path: '/pmed' },
-  { name: 'Design and Innovative Thinking', path: '/dit' },
+  { name: 'Home', path: '/', icon: HouseIcon },
+  { name: 'About SUNForge Fest', path: '/about', icon: InfoIcon },
+  { name: 'Final Year Projects', path: '/fyp', short: 'FYP' },
+  { name: 'Integrated Design Projects', path: '/idp', short: 'IDP' },
+  { name: 'Sustainable Engineering Design', path: '/sed', short: 'SED' },
+  { name: 'Project Management and Engineering Design', path: '/pmed', short: 'PMED' },
+  { name: 'Design and Innovative Thinking', path: '/dit', short: 'DIT' },
 ];
 
 // get active page
@@ -35,12 +36,15 @@ import {
 // item list
 import {
   Item,
+  ItemMedia,
   // ItemActions,
   ItemContent,
   // ItemDescription,
   ItemTitle,
   ItemSeparator,
 } from '@/components/ui/item'
+
+import TextIcon from '@/components/TextIcon.vue'
 </script>
 
 <template>
@@ -61,6 +65,10 @@ import {
           <template v-for="(page, index) in pages" :key="page.path">
             <Item as-child>
               <a :href="page.path">
+                <ItemMedia>
+                  <TextIcon v-if="page.short" :text="page.short" :size="40"></TextIcon>
+                  <component v-if="page.icon" :is="page.icon" :size="40" />
+                </ItemMedia>
                 <ItemContent>
                   <ItemTitle class="text-xl">{{ page.name }}</ItemTitle>
                   <!-- <ItemDescription>
