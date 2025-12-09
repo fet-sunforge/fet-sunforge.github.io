@@ -9,8 +9,48 @@
     <!-- Optional background -->
     <!-- <rect width="100" height="100" rx="0" fill="#f0f0f0" /> -->
 
+    <template v-if="chars.length == 3">
+      <text
+        :x="50"
+        :y="63.29"
+        font-size="40"
+        font-weight="bold"
+        font-family="monospace"
+        text-align="middle"
+        text-anchor="middle"
+        fill="currentColor"
+      >
+        {{ chars.join('') }}
+      </text>
+    </template>
+    <template v-if="chars.length == 4">
+      <text
+        :x="50"
+        :y="45"
+        font-size="40"
+        font-weight="bold"
+        font-family="monospace"
+        text-align="middle"
+        text-anchor="middle"
+        fill="currentColor"
+      >
+        {{ chars.slice(0, 2).join('') }}
+      </text>
+      <text
+        :x="50"
+        :y="84.08"
+        font-size="40"
+        font-weight="bold"
+        font-family="monospace"
+        text-align="middle"
+        text-anchor="middle"
+        fill="currentColor"
+      >
+        {{ chars.slice(2).join('') }}
+      </text>
+    </template>
     <!-- Characters -->
-    <template v-for="(char, i) in chars" :key="i">
+    <!-- <template v-else v-for="(char, i) in chars" :key="i">
       <text
         :x="getXPos(i)"
         :y="getYPos(i)"
@@ -23,7 +63,7 @@
       >
         {{ char }}
       </text>
-    </template>
+    </template> -->
 
     <!-- Wave Path -->
     <!-- <path
@@ -70,30 +110,30 @@ const attrs = useAttrs();
 // Clean + max 3 characters
 const chars = computed(() => props.text.trim().split(""));
 
-const getXPos = (index: number) => {
-  const positions = chars.value.length === 3 ? positionsForThree : positionsForFour;
-  return positions[index]?.x;
-};
+// const getXPos = (index: number) => {
+//   const positions = chars.value.length === 3 ? positionsForThree : positionsForFour;
+//   return positions[index]?.x;
+// };
 
-const getYPos = (index: number) => {
-  const positions = chars.value.length === 3 ? positionsForThree : positionsForFour;
-  return positions[index]?.y;
-};
+// const getYPos = (index: number) => {
+//   const positions = chars.value.length === 3 ? positionsForThree : positionsForFour;
+//   return positions[index]?.y;
+// };
 
 // Predefined zig-zag positions
-const positionsForThree = [
-  { x: 15.92, y: 52.92 }, // 1st char (NW)
-  { x: 33.71, y: 76.16 }, // 2nd char (lower)
-  { x: 57.24, y: 63.29 }, // 3rd char (higher again)
-  // { x: 65, y: 65 }, // 4th char (optional bottom-right)
-];
+// const positionsForThree = [
+//   { x: 15.92, y: 52.92 }, // 1st char (NW)
+//   { x: 33.71, y: 76.16 }, // 2nd char (lower)
+//   { x: 57.24, y: 63.29 }, // 3rd char (higher again)
+//   // { x: 65, y: 65 }, // 4th char (optional bottom-right)
+// ];
 
-const positionsForFour = [
-  { x: 18.70, y: 45 }, // 1st char (NW)
-  { x: 47.72, y: 45 }, // 2nd char (lower)
-  { x: 18.56, y: 84.08 }, // 3rd char (higher again)
-  { x: 47.72, y: 84.08 }, // 4th char (optional bottom-right)
-];
+// const positionsForFour = [
+//   { x: 18.70, y: 45 }, // 1st char (NW)
+//   { x: 47.72, y: 45 }, // 2nd char (lower)
+//   { x: 18.56, y: 84.08 }, // 3rd char (higher again)
+//   { x: 47.72, y: 84.08 }, // 4th char (optional bottom-right)
+// ];
 // Use only the first 4 characters
 // const displayText = computed(() => props.text.trim().slice(0, 4));
 

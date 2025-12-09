@@ -61,7 +61,7 @@ import TextIcon from '@/components/TextIcon.vue'
       </DialogHeader>
 
       <div class="flex items-center gap-2 overflow-y-auto max-h-[70vh]">
-        <div class="flex w-full max-w-md flex-col gap-0">
+        <div class="flex w-full flex-col gap-0">
           <template v-for="(page, index) in pages" :key="page.path">
             <Item as-child>
               <a :href="page.path">
