@@ -6,7 +6,7 @@ import ItemDialog from "@/components/ItemDialog.vue";
 import CourseDescription from "@/components/CourseDescription.vue";
 import { useDialogWithURL } from '@/composables/useDialogWithURL';
 
-import { courses } from '@/projects/sed.ts';
+import { courses } from '@/projects/dit.ts';
 
 const {
   selectedCourse,

@@ -10,7 +10,7 @@
   >
     <Card class="rounded-xl shadow-sm border border-border p-4">
       <CardHeader>
-        <CardTitle>{{ item.title }}</CardTitle>
+        <CardTitle class="overflow-hidden h-15">{{ item.title }}</CardTitle>
         <CardDescription class="text-nowrap overflow-hidden text-ellipsis">{{ item.pic.join(", ") }}</CardDescription>
       </CardHeader>
       <CardContent class="text-nowrap overflow-hidden text-ellipsis h-20">{{ item.desc }}</CardContent>

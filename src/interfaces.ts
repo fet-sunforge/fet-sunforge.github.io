@@ -1,6 +1,7 @@
 export interface Course {
   name: string;
   description: string;
+  short: string;
   projects: Array<Project>;
 }
 export interface Project {
