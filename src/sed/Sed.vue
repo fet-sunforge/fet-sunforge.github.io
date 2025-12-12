@@ -32,6 +32,7 @@ const {
             v-for="(project, pid) in course.projects"
             :key="pid"
             :item="project"
+            :group="true"
             @open="openDialog(cid, pid)"
           />
         </div>
@@ -41,6 +42,7 @@ const {
      v-if="selectedItem && selectedCourse"
      :course="selectedCourse"
      :item="selectedItem"
+     :group="true"
      :open="dialogOpen"
      @close="closeDialog"
    />

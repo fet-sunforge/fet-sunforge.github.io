@@ -10,17 +10,22 @@
   >
     <Card class="rounded-xl shadow-sm border border-border p-4">
       <CardHeader>
-        <CardTitle class="overflow-hidden h-15">{{ item.title }}</CardTitle>
-        <CardDescription class="text-nowrap overflow-hidden text-ellipsis">{{ item.pic.join(", ") }}</CardDescription>
+        <CardTitle class="overflow-hidden h-[2.2em] line-clamp-2">{{ item.title }}</CardTitle>
+        <CardDescription class="flex flex-row gap-2 overflow-hidden">
+          <UsersIcon v-if="group" />
+          <UserIcon v-else />
+          <div class="flex-1 text-nowrap overflow-hidden text-ellipsis">{{ item.pic.join(", ") }}</div>
+        </CardDescription>
       </CardHeader>
-      <CardContent class="text-nowrap overflow-hidden text-ellipsis h-20">{{ item.desc }}</CardContent>
+      <CardContent class="overflow-hidden text-ellipsis line-clamp-3 h-[4.5em]" v-html="item.desc.replaceAll('<br>', ' ')"></CardContent>
     </Card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card"
+import { UserIcon, UsersIcon } from "lucide-vue-next";
 
-defineProps<{ item: any }>()
+defineProps<{ item: any, group?: boolean }>()
 defineEmits(["open"])
 </script>
