@@ -8,7 +8,7 @@ import ThemeFab from '@/components/ThemeFab.vue';
   <div class="flex flex-col w-screen h-screen items-center text-2xl overflow-auto pt-10 pb-10 gap-10">
     <!-- <div class="flex flex-col md:flex-row gap-4 justify-center items-center h-screen pt-10 pb-10"> -->
       <div class="flex flex-col items-center gap-2" style="margin-top: auto; margin-bottom: auto;">
-        <img src="./assets/logo.png" class="w-full max-w-xl" alt="Logo" />
+        <a href="/about"><img src="./assets/logo.png" class="w-full max-w-xl" alt="Logo" /></a>
         <div>Coming in</div>
         <Countdown deadlineISO="2025-12-23T09:00:00Z"
           mainColor="white"
@@ -33,7 +33,7 @@ import ThemeFab from '@/components/ThemeFab.vue';
         </div>
         <p class="text-center">Faculty of Engineering and Technology<br>Sunway University</p> -->
       </div>
-      <img src="@/assets/2.png" class="max-h-dvh aspect-auto"></img>
+      <a href="/about"><img src="@/assets/2.png" class="max-h-dvh aspect-auto"></img></a>
     <!-- </div> -->
   </div>
   <ThemeFab />
