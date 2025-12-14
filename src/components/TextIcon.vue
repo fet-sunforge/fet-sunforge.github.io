@@ -3,18 +3,18 @@
     v-bind="attrs"
     :width="size"
     :height="size"
-    viewBox="0 0 100 100"
+    viewBox="15 15 70 70"
     xmlns="http://www.w3.org/2000/svg"
   >
     <!-- Optional background -->
-    <!-- <rect width="100" height="100" rx="0" fill="#f0f0f0" /> -->
+     <!-- <rect width="100" height="100" rx="0" fill="#f0f0f0" /> -->
 
     <template v-if="chars.length == 3">
       <text
-        :x="50"
-        :y="63.29"
+        x="50"
+        y="63.29"
         font-size="40"
-        font-weight="bold"
+        font-weight=""
         font-family="monospace"
         text-align="middle"
         text-anchor="middle"
@@ -25,10 +25,10 @@
     </template>
     <template v-if="chars.length == 4">
       <text
-        :x="50"
-        :y="45"
+        x="50"
+        y="45"
         font-size="40"
-        font-weight="bold"
+        font-weight=""
         font-family="monospace"
         text-align="middle"
         text-anchor="middle"
@@ -37,10 +37,10 @@
         {{ chars.slice(0, 2).join('') }}
       </text>
       <text
-        :x="50"
-        :y="84.08"
+        x="50"
+        y="84.08"
         font-size="40"
-        font-weight="bold"
+        font-weight=""
         font-family="monospace"
         text-align="middle"
         text-anchor="middle"

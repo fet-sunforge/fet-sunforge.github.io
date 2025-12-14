@@ -1,16 +1,24 @@
 <script setup lang="ts">
 import GlobalMenu from '@/components/GlobalMenu.vue'
 import { ref, onMounted, computed } from 'vue';
-import { HouseIcon, InfoIcon } from 'lucide-vue-next';
+import type { ComputedRef, FunctionalComponent } from 'vue';
+import type { LucideProps } from 'lucide-vue-next';
+import { HouseIcon, InfoIcon, VectorSquareIcon } from 'lucide-vue-next';
 
-const pages = [
-  { name: 'Home', path: '/', icon: HouseIcon },
-  { name: 'About SUNForge Fest', path: '/about', icon: InfoIcon },
-  { name: 'Final Year Projects', path: '/fyp', short: 'FYP' },
-  { name: 'Integrated Design Projects', path: '/idp', short: 'IDP' },
-  { name: 'Sustainable Engineering Design', path: '/sed', short: 'SED' },
-  { name: 'Project Management and Engineering Design', path: '/pmed', short: 'PMED' },
-  { name: 'Design and Innovative Thinking', path: '/dit', short: 'DIT' },
+const pages: Array<{
+    name: string;
+    path: string;
+    icon: FunctionalComponent<LucideProps, {}, any, {}>|null;
+    short: string|null;
+}> = [
+  { name: 'Home', path: '/', icon: HouseIcon, short: null },
+  { name: 'About SUNForge Fest', path: '/about', icon: InfoIcon, short: null },
+  { name: 'Organising Committee', path: '/committee', icon: VectorSquareIcon, short: null },
+  { name: 'Final Year Projects', path: '/fyp', icon: null, short: 'FYP' },
+  { name: 'Integrated Design Projects', path: '/idp', icon: null, short: 'IDP' },
+  { name: 'Sustainable Engineering Design', path: '/sed', icon: null, short: 'SED' },
+  { name: 'Project Management and Engineering Design', path: '/pmed', icon: null, short: 'PMED' },
+  { name: 'Design and Innovative Thinking', path: '/dit', icon: null, short: 'DIT' },
 ];
 
 // get active page
@@ -18,8 +26,12 @@ const currentPath = ref('/')
 onMounted(() => {
   currentPath.value = window.location.pathname
 })
-const activePage = computed(() => { return pages.find(page => page.path === currentPath.value) })
-const activePageName = computed(() => activePage.value?.name ?? '')
+const activePage = computed(() => { return pages.find(page => page.path === currentPath.value) }) as ComputedRef<{
+    name: string;
+    path: string;
+    icon: FunctionalComponent<LucideProps, {}, any, {}>|null;
+    short: string|null;
+}>
 
 // use drawer/dialog
 import {
@@ -50,7 +62,13 @@ import TextIcon from '@/components/TextIcon.vue'
 <template>
   <Dialog>
     <DialogTrigger as-child>
-      <GlobalMenu>{{ activePageName }}</GlobalMenu>
+      <GlobalMenu>
+        <div class="flex flex-row gap-2">
+          <TextIcon v-if="activePage.short" :text="activePage.short" :size="30"></TextIcon>
+          <component v-if="activePage.icon" :is="activePage.icon" :size="30" :stroke-width="1" />
+          {{ activePage.name }}
+        </div>
+      </GlobalMenu>
     </DialogTrigger>
     <DialogContent
       class="sm:max-w-md"
@@ -66,8 +84,8 @@ import TextIcon from '@/components/TextIcon.vue'
             <Item as-child>
               <a :href="page.path">
                 <ItemMedia>
-                  <TextIcon v-if="page.short" :text="page.short" :size="40"></TextIcon>
-                  <component v-if="page.icon" :is="page.icon" :size="40" />
+                  <TextIcon v-if="page.short" :text="page.short" :size="30"></TextIcon>
+                  <component v-if="page.icon" :is="page.icon" :size="30" :stroke-width="1" />
                 </ItemMedia>
                 <ItemContent>
                   <ItemTitle class="text-xl">{{ page.name }}</ItemTitle>

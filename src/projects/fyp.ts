@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import type { Course } from '@/interfaces';
 
 export const courses = ref([{
-  name: "Final Year Project 1",
+  name: "Final Year Project 1 (Electronic and Electrical Engineering)",
   description: "The Final Year Project is an undergraduate engineering research project carried out by an individual student that is related to the student’s field of study under the supervision of at least one academic member of staff. This project is carried out and completed over two semesters as a partial fulfillment for the undergraduate degree award.",
   short: "FYP",
   projects: [{
@@ -56,7 +56,7 @@ export const courses = ref([{
     pic: ['Yap Meng Lok']
   }]
 }, {
-  name: "Final Year Project 2",
+  name: "Final Year Project 2 (Electronic and Electrical Engineering)",
   description: "The Final Year Project is an undergraduate engineering research project carried out by an individual student that is related to the student’s field of study under the supervision of at least one academic member of staff. This project is carried out and completed over two semesters as a partial fulfillment for the undergraduate degree award.",
   short: "FYP",
   projects: [{
@@ -68,18 +68,6 @@ export const courses = ref([{
     desc: '',
     pic: ['Benjamin Tan Jie Ming']
   }, {
-    title: 'Design of Optimal Lubricants through Computer-Aided Approach',
-    desc: '',
-    pic: ['Chong Xian Zhuang']
-  }, {
-    title: 'Control of new hybrid extractive-reactive distillation system',
-    desc: '',
-    pic: ['Choo Xuan Liang']
-  }, {
-    title: 'Green Extraction and Recovery of Polar Volatile Compounds from Salvia officinalis Leaves',
-    desc: '',
-    pic: ['Hooi Soong Ling']
-  }, {
     title: 'Techno-economic feasibility of e-ammonia production in a photovoltaic-battery energy storage-hydrogen energy storage integrated microgrid',
     desc: '',
     pic: ['Kit Shang Lin']
@@ -87,10 +75,6 @@ export const courses = ref([{
     title: 'Portable Air Quality Monitoring System based on Arduino and Gas Sensors for Indoor Environments',
     desc: '',
     pic: ['Lew Wei Ming']
-  }, {
-    title: 'Selective Enrichment and Thermodynamic Characterisation of Non-Polar Volatile Compounds from Salvia officinalis Leaves',
-    desc: '',
-    pic: ['Lim Zhan Hong']
   }, {
     title: 'Design and Development of an IoT-based Air Flow Meter for Long Term Breathing Studies of COPD Patients',
     desc: '',
@@ -112,6 +96,31 @@ export const courses = ref([{
     desc: '',
     pic: ['Ooi Ke Vin']
   }, {
+    title: 'TinyML-Driven Wearable System for Motion Analysis and Injury Prevention in Racket Sports',
+    desc: '',
+    pic: ['Voon Yue Khang']
+  }]
+}, {
+  name: "Final Year Project 2 (Chemical Engineering)",
+  description: "The Final Year Project is an undergraduate engineering research project carried out by an individual student that is related to the student’s field of study under the supervision of at least one academic member of staff. This project is carried out and completed over two semesters as a partial fulfillment for the undergraduate degree award.",
+  short: "FYP",
+  projects: [{
+    title: 'Design of Optimal Lubricants through Computer-Aided Approach',
+    desc: '',
+    pic: ['Chong Xian Zhuang']
+  }, {
+    title: 'Control of new hybrid extractive-reactive distillation system',
+    desc: '',
+    pic: ['Choo Xuan Liang']
+  }, {
+    title: 'Green Extraction and Recovery of Polar Volatile Compounds from Salvia officinalis Leaves',
+    desc: '',
+    pic: ['Hooi Soong Ling']
+  }, {
+    title: 'Selective Enrichment and Thermodynamic Characterisation of Non-Polar Volatile Compounds from Salvia officinalis Leaves',
+    desc: '',
+    pic: ['Lim Zhan Hong']
+  }, {
     title: 'Optimised Chemical Treatment of Organic Waste as a Functional Additive for Green Concrete Enhancement',
     desc: '',
     pic: ['Saw Chee Hong']
@@ -123,10 +132,6 @@ export const courses = ref([{
     title: 'Artificial Intelligence Applications in Air Quality Forecasting',
     desc: '',
     pic: ['Tan Xin Ming']
-  }, {
-    title: 'TinyML-Driven Wearable System for Motion Analysis and Injury Prevention in Racket Sports',
-    desc: '',
-    pic: ['Voon Yue Khang']
   }, {
     title: 'CO2 Capture and Sequestration: Principles and Simulation of a Supersonic Gas Conditioning System',
     desc: '',

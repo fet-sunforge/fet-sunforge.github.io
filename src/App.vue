@@ -1,7 +1,46 @@
 <script setup lang="ts">
-// import { CalendarDays, Landmark, Clock } from 'lucide-vue-next';
+import { CalendarDays, Landmark, Clock } from 'lucide-vue-next';
 import { Countdown } from 'vue3-flip-countdown';
 import ThemeFab from '@/components/ThemeFab.vue';
+import { Separator } from '@/components/ui/separator';
+import Schedule from '@/components/Schedule.vue';
+import { Badge } from '@/components/ui/badge';
+
+const subjectlist = [{
+  name: 'Final Year Projects',
+  url: '/fyp',
+  class: 'fyp'
+}, {
+  name: 'Integrated Design Projects',
+  url: '/idp',
+  class: 'idp'
+}, {
+  name: 'Sustainable Engineering Design',
+  url: '/sed',
+  class: 'sed'
+}, {
+  name: 'Project Management and Engineering Design',
+  url: '/pmed',
+  class: 'pmed'
+}, {
+  name: 'Design and Innovative Thinking',
+  url: '/dit',
+  class: 'dit'
+}]
+
+const awardlist = [{
+  name: 'Best EE Final Year Project',
+  class: 'best-ee-fyp'
+}, {
+  name: 'Best Chemical Final Year Project',
+  class: 'best-chemical-fyp'
+}, {
+  name: 'Best Poster',
+  class: 'best-poster'
+}, {
+  name: 'Best Integrated Design Project',
+  class: 'best-idp'
+}]
 </script>
 
 <template>
@@ -17,24 +56,117 @@ import ThemeFab from '@/components/ThemeFab.vue';
           mainFlipBackgroundColor="var(--accent)"
           secondFlipBackgroundColor="var(--secondary)"
         />
-        <!-- <div class="flex flex-col items-center gap-1 mb-5 mt-5">
+        <Separator class="mt-5 mb-3"/>
+        <div class="flex flex-row flex-wrap gap-2">
+          <a href="/about"><Badge class="text-base px-3 py-1.5">About SUNForge Fest</Badge></a>
+          <a href="/committee"><Badge class="text-base px-3 py-1.5">Organising Committee</Badge></a>
+        </div>
+
+        <Separator class="mt-5"/>
+        <div class="flex flex-col items-center gap-1">
           <div class="flex flex-row items-center gap-2">
             <CalendarDays />
             <div>23 December 2025</div>
           </div>
           <div class="flex flex-row items-center gap-2">
             <Clock />
-            <div>9:00 AM</div>
+            <div>9:00 AM to 5:00 PM</div>
           </div>
           <div class="flex flex-row items-center gap-2">
             <Landmark />
             <div>FET Lab Building</div>
           </div>
         </div>
-        <p class="text-center">Faculty of Engineering and Technology<br>Sunway University</p> -->
+        <Separator class="mb-5"/>
+        <Schedule
+          start="0900" end="1600"
+          location="FET Lab Building"
+          name="Engineering Project Showcase"
+        >
+          <div class="flex flex-col">
+            <span>Project exhibition and assessment for</span>
+            <div class="flex flex-row flex-wrap max-w-lg gap-2">
+              <a v-for="subject in subjectlist" :href="subject.url">
+                <Badge class="text-lg text-gray-800 px-3 py-1.5 select-none" :class="subject.class">{{ subject.name }}</Badge>
+              </a>
+            </div>
+          </div>
+        </Schedule>
+        <Schedule
+          start="1600" end="1700"
+          location="Thinker Space"
+          name="Closing Ceremony & Special Awards"
+        >
+          <div class="flex flex-col">
+            <span>Special awards include</span>
+            <div class="flex flex-row flex-wrap max-w-lg gap-2">
+              <template v-for="award in awardlist">
+                <Badge class="text-lg text-gray-800 px-3 py-1.5 select-none" :class="award.class">{{ award.name }}</Badge>
+              </template>
+            </div>
+          </div>
+        </Schedule>
+        <!-- <p class="text-center">Faculty of Engineering and Technology<br>Sunway University</p> -->
       </div>
       <a href="/about"><img src="@/assets/2.png" class="max-h-dvh aspect-auto"></img></a>
     <!-- </div> -->
   </div>
   <ThemeFab />
 </template>
+
+<style scoped>
+.fyp {
+  background-color: var(--color-orange-200);
+}
+.fyp:hover {
+  background-color: var(--color-orange-300);
+}
+.idp {
+  background-color: var(--color-emerald-200);
+}
+.idp:hover {
+  background-color: var(--color-emerald-300);
+}
+.sed {
+  background-color: var(--color-blue-200);
+}
+.sed:hover {
+  background-color: var(--color-blue-300);
+}
+.pmed {
+  background-color: var(--color-purple-200);
+}
+.pmed:hover {
+  background-color: var(--color-purple-300);
+}
+.dit {
+  background-color: var(--color-rose-200);
+}
+.dit:hover {
+  background-color: var(--color-rose-300);
+}
+.best-ee-fyp {
+  background-color: var(--color-green-200);
+}
+.best-ee-fyp:hover {
+  background-color: var(--color-green-300);
+}
+.best-chemical-fyp {
+  background-color: var(--color-yellow-200);
+}
+.best-chemical-fyp:hover {
+  background-color: var(--color-yellow-300);
+}
+.best-poster {
+  background-color: var(--color-pink-200);
+}
+.best-poster:hover {
+  background-color: var(--color-pink-300);
+}
+.best-idp {
+  background-color: var(--color-indigo-200);
+}
+.best-idp:hover {
+  background-color: var(--color-indigo-300);
+}
+</style>
