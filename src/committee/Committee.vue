@@ -3,7 +3,7 @@ import GlobalSelectionMenu from "@/components/GlobalSelectionMenu.vue";
 import ThemeFab from "@/components/ThemeFab.vue";
 import { Separator } from "@/components/ui/separator";
 import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { InfoIcon } from "lucide-vue-next";
 
 const committeeMembers = [{
