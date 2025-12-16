@@ -48,11 +48,11 @@ const committeeMembers = [{
     <div class="flex flex-col items-center gap-3 max-w-6xl w-full px-10" style="margin-top: auto; margin-bottom: auto;">
       <div>This event is co-organised by</div>
       <div class="flex flex-row items-center gap-3 flex-wrap justify-center">
-        <img src="../assets/SEN.png" alt="SEN" class="h-20 rounded" />
-        <img src="../assets/IEM.png" alt="IEM" class="h-20 rounded" />
-        <img src="../assets/IChemE.png" alt="IChemE" class="h-20 rounded" />
-        <img src="../assets/IMechE.png" alt="IMechE" class="h-20 rounded" />
-        <img src="../assets/ICE.png" alt="ICE" class="h-20 rounded" />
+        <img src="../../assets/SEN.png" alt="SEN" class="h-20 rounded" />
+        <img src="../../assets/IEM.png" alt="IEM" class="h-20 rounded" />
+        <img src="../../assets/IChemE.png" alt="IChemE" class="h-20 rounded" />
+        <img src="../../assets/IMechE.png" alt="IMechE" class="h-20 rounded" />
+        <img src="../../assets/ICE.png" alt="ICE" class="h-20 rounded" />
       </div>
       <Alert class="max-w-2xl">
         <!-- <div class="flex flex-row items-center gap-3"> -->
