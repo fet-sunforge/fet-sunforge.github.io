@@ -42,7 +42,9 @@ const handleLogout = () => {
       <div v-else-if="!assessor">
         <LoginComponent @login-success="handleLoginSuccess" />
       </div>
+
       <div v-else>
+        {{ assessor }}
         <Button
           @click="handleLogout"
           class="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700"
