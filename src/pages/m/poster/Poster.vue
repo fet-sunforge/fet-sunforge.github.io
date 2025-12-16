@@ -4,6 +4,9 @@ import { initializeAssessor, clearAssessorCode } from '@/lib/markingclient'
 import type { AssessorInfo } from '@/lib/markingclient'
 import LoginComponent from '@/components/LoginComponent.vue'
 import ThemeFab from "@/components/ThemeFab.vue";
+import { Button } from "@/components/ui/button";
+import { Separator } from '@/components/ui/separator';
+import MarkProjectDetails from '@/components/MarkProjectDetails.vue'
 // import AssessmentComponent from '@/components/AssessmentComponent.vue'
 
 const assessor = ref<AssessorInfo | null>(null)
@@ -13,19 +16,32 @@ onMounted(async () => {
   // Check if assessor is already logged in
   const result = await initializeAssessor()
   if (result) {
-    assessor.value = result.info
+    afterLogin(result.info)
   }
   loading.value = false
 })
 
 const handleLoginSuccess = (info: AssessorInfo) => {
-  assessor.value = info
+  afterLogin(info)
 }
 
 const handleLogout = () => {
   clearAssessorCode()
   assessor.value = null
 }
+
+const courseCodeLabel = "cc"
+const itemIndexLabel = "i"
+const courseCode = ref("")
+const itemIndex = ref(0)
+const url = new URL(window.location.href)
+courseCode.value = url.searchParams.get(courseCodeLabel) || ""
+itemIndex.value = url.searchParams.get(itemIndexLabel) ? parseInt(url.searchParams.get(itemIndexLabel)!) : 0
+
+const afterLogin = async (info: AssessorInfo) => {
+  assessor.value = info
+}
+
 </script>
 
 <template>
@@ -34,6 +50,7 @@ const handleLogout = () => {
       <div class="w-full text-center text-xl">
         Poster Evaluation
       </div>
+      <Separator class="my-2"/>
 
       <div v-if="loading" class="flex items-center justify-center h-screen">
         <p>Loading...</p>
@@ -43,16 +60,24 @@ const handleLogout = () => {
         <LoginComponent @login-success="handleLoginSuccess" />
       </div>
 
-      <div v-else>
-        {{ assessor }}
-        <Button
-          @click="handleLogout"
-          class="px-4 py-2 text-sm bg-red-600 text-white rounded hover:bg-red-700"
-        >
-          Logout
-        </Button>
+      <template v-else>
+        <div class="flex flex-row items-center gap-1">
+          <div class="flex-1">Logged in as {{ assessor.name }}</div>
+          <Button
+            @click="handleLogout"
+            class=" bg-red-600 text-white rounded hover:bg-red-700"
+          >
+            Logout
+          </Button>
+        </div>
+
+        <Separator class="my-2"/>
+        <MarkProjectDetails :coursecode="courseCode" :itemindex="itemIndex"/>
+        <Separator class="my-2"/>
         <!-- <AssessmentComponent :assessor="assessor" @logout="handleLogout" /> -->
-      </div>
+      </template>
+
+      <Separator class="my-2"/>
     </div>
   </div>
   <ThemeFab />
