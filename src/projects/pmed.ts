@@ -6,6 +6,7 @@ export const courses = ref([{
   name: "Project Management and Engineering Design",
   description: "This is a project-based course, which entails students working in groups of no more than 5 to design and build an engineering system which addresses an engineering challenge. Students will re-learn and use the CDIO™ framework to guide their design and build experiences throughout this course.",
   short: "PMED",
+  code: "pmed",
   projects: [{
     title: 'Electric Cart for Senior Citizens',
     desc: 'As people age, mobility often becomes increasingly limited due to muscle weakness, joint pain, or balance issues. Senior citizens may find it challenging to walk long distances, carry items such as groceries, or move around safely in their daily lives. While mobility aids such as walking sticks, wheelchairs, and mobility scooters exist, many are either too expensive, lack flexibility, or are not tailored to meet the specific comfort and independence needs of the elderly. There is a growing need for affordable, user-friendly, and safe electric mobility solutions that empower seniors to maintain an active lifestyle. <br><br>Problem Statement: How might we design and build a lightweight, stable, and user-friendly electric cart that allows senior citizens to travel short distances comfortably, carry small loads, and move safely both indoors and outdoors, thereby improving their mobility, independence, and overall quality of life?',

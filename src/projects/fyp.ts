@@ -6,6 +6,7 @@ export const courses = ref([{
   name: "Final Year Project 1 (Electronic and Electrical Engineering)",
   description: "The Final Year Project is an undergraduate engineering research project carried out by an individual student that is related to the student’s field of study under the supervision of at least one academic member of staff. This project is carried out and completed over two semesters as a partial fulfillment for the undergraduate degree award.",
   short: "FYP",
+  code: "beeefyp1",
   projects: [{
     title: 'A Contactless Health Monitoring System Using mmWave Radar and Infrared Imaging Sensors',
     desc: 'This project aims to develop an intelligent, non-intrusive IoT-based monitoring system for the elderly that ensures privacy-preserving, real-time health and safety monitoring within their rooms by leveraging a sophisticated sensor fusion approach. Instead of traditional video surveillance or wearable devices, the system utilizes a millimeter-wave radar and thermal imaging camera to measure critical vital signs without any physical contact; the radar detects subtle chest movements for continuous heart rate monitoring, while a novel technique synchronizes radar data with thermal imaging of the neck\'s pulse point to calculate pulse wave velocity for reliable blood pressure estimation. Simultaneously, the system employs these sensors supplemented by environmental sensing to detect posture changes, falls, and abnormal body temperature without capturing personally identifiable visuals. A Raspberry Pi serves as the processing unit, running machine learning algorithms for posture recognition, fall detection, fever monitoring, and vital sign analysis, with all data processed locally at the edge to minimize latency, protect privacy, and reduce false alarms from pets or background heat sources. Critical alerts for health or safety emergencies are transmitted to caregivers via mobile notifications through services like Firebase Cloud Messaging, with system evaluation focusing on accuracy, false-positive rates, sensor fusion effectiveness, and environmental adaptability. This integrated contactless methodology guarantees comfort, dignity, and privacy, making it an ideal solution for deployment in elderly care facilities and home environments.',
@@ -59,6 +60,7 @@ export const courses = ref([{
   name: "Final Year Project 2 (Electronic and Electrical Engineering)",
   description: "The Final Year Project is an undergraduate engineering research project carried out by an individual student that is related to the student’s field of study under the supervision of at least one academic member of staff. This project is carried out and completed over two semesters as a partial fulfillment for the undergraduate degree award.",
   short: "FYP",
+  code: "beeefyp2",
   projects: [{
     title: 'Design and Development of Dual Robotic Arm System for Automated Sorting and Storage on a Miniature Assembly Line ',
     desc: '',
@@ -104,6 +106,7 @@ export const courses = ref([{
   name: "Final Year Project 2 (Chemical Engineering)",
   description: "The Final Year Project is an undergraduate engineering research project carried out by an individual student that is related to the student’s field of study under the supervision of at least one academic member of staff. This project is carried out and completed over two semesters as a partial fulfillment for the undergraduate degree award.",
   short: "FYP",
+  code: "bchefyp2",
   projects: [{
     title: 'Design of Optimal Lubricants through Computer-Aided Approach',
     desc: 'This Final Year Project (FYP) addresses the environmental drawbacks of conventional mineral oil-based lubricants, such as poor biodegradability ,high pour point and aquatic toxicity, by developing high-performance vegetable oil-based biolubricants with targeting low pour point. This project evaluates vegetable oils as base stocks, focusing on key properties like pour point, kappa index, viscosity index, and viscosity at 40°C . Using Rough Set Theory (RST) via ROSE2 software, predictive models for pour point are built from physicochemical datasets, then core reducts are analysing by ROSE 2 with Viscosity index and kappa index as core reducts. A Computer-Aided Molecular Design (CAMD) framework then optimizes molecular structures through group contribution methods based on the core reducts analysed by ROSE 2 and mixed-integer linear programming to meet target performance criteria of biolubricant oil.',

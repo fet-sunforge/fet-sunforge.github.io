@@ -6,6 +6,7 @@ export const courses = ref([{
   name: "Sustainable Engineering Design",
   description: "This course introduces a project-based learning framework using Conceiving, Designing, Implementing, and Operating (CDIO™) pedagogy with the principles of sustainable design.",
   short: "SED",
+  code: "sed",
   projects: [{
     title: 'An Intelligent Lighting Control System for Classrooms',
     desc: 'This project is designed to solve the issue of energy waste caused by leaving lights on in unoccupied classrooms. The system uses multiple infrared (IR) sensors installed in each classroom to provide comprehensive coverage of detecting the presence of people. The sensors continously monitor human movement within the classroom area and if ther\'s no presence detected for a certain period of time, the microcontroller will trigger a relay switch to automatically switch off the classroom lighting. <br><br> This automated system able to reduce unnecessary energy consumption, promotes efficient energy usage, and supports sustainable practices in educational environments.',

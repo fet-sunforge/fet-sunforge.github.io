@@ -6,6 +6,7 @@ export const courses = ref([{
   name: "Design and Innovative Thinking",
   description: "The course will provide an overview of the entire process of creative problem-solving, addressing problem definition, identification and removal of blocks to creative thought. It will also cover the selection, implementation and evaluation of solutions to a given set of problems.",
   short: "DIT",
+  code: "dit",
   projects: [{
     title: 'project 1',
     desc: 'abstract 1',

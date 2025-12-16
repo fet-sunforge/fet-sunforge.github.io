@@ -6,6 +6,7 @@ export const courses = ref([{
   name: "Integrated Design Project 1",
   description: "The Integrated Design Project is an engineering project carried out by a group of students to integrate knowledge and skills that has been gained. Working in groups of 3 to 4, students will be responsible for identifying and solving complex engineering problems and to carry out the necessary complex engineering activities which includes conceptualizing, designing, planning, implementing, managing and evaluating an Electronic and Electrical engineering design project. This will incorporate teamwork and leadership skills, effective communication and the application of project management.",
   short: "IDP",
+  code: "idp1",
   projects: [{
     title: 'Distributed Acoustic Sensing of Seismic Events in Buildings due to Earthquake',
     desc: '',
@@ -27,6 +28,7 @@ export const courses = ref([{
   name: "Integrated Design Project 2",
   description: "The Integrated Design Project is an engineering project carried out by a group of students to integrate knowledge and skills that has been gained. Working in groups of 3 to 4, students will be responsible for identifying and solving complex engineering problems and to carry out the necessary complex engineering activities which includes conceptualizing, designing, planning, implementing, managing and evaluating an Electronic and Electrical engineering design project. This will incorporate teamwork and leadership skills, effective communication and the application of project management.",
   short: "IDP",
+  code: "idp2",
   projects: [{
     title: 'project 1',
     desc: '',
