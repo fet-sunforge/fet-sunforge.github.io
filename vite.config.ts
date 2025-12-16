@@ -24,7 +24,8 @@ export default defineConfig({
         sed: path.resolve(__dirname, 'sed.html'),
         pmed: path.resolve(__dirname, 'pmed.html'),
         dit: path.resolve(__dirname, 'dit.html'),
-        committee: path.resolve(__dirname, 'committee.html')
+        committee: path.resolve(__dirname, 'committee.html'),
+        "m/poster": path.resolve(__dirname, 'm/poster.html')
       }
     }
   }
