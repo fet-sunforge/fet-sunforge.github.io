@@ -7,7 +7,8 @@ import ThemeFab from "@/components/ThemeFab.vue";
 import { Button } from "@/components/ui/button";
 import { Separator } from '@/components/ui/separator';
 import MarkProjectDetails from '@/components/MarkProjectDetails.vue'
-// import AssessmentComponent from '@/components/AssessmentComponent.vue'
+import AssessmentComponent from '@/components/AssessmentComponent.vue'
+import { rubrics } from '@/rubrics/poster';
 
 const assessor = ref<AssessorInfo | null>(null)
 const loading = ref(true)
@@ -42,11 +43,12 @@ const afterLogin = async (info: AssessorInfo) => {
   assessor.value = info
 }
 
+const scores = ref(0)
 </script>
 
 <template>
   <div class="flex flex-col w-full items-center">
-    <div class="flex flex-col w-full max-w-xl py-10 px-3 gap-3">
+    <div class="flex flex-col w-full max-w-4xl py-10 px-3 gap-3">
       <div class="w-full text-center text-xl">
         Poster Evaluation
       </div>
@@ -74,7 +76,9 @@ const afterLogin = async (info: AssessorInfo) => {
         <Separator class="my-2"/>
         <MarkProjectDetails :coursecode="courseCode" :itemindex="itemIndex"/>
         <Separator class="my-2"/>
-        <!-- <AssessmentComponent :assessor="assessor" @logout="handleLogout" /> -->
+        <template v-for="criterion in rubrics.criteria" :key="criterion.id">
+          <AssessmentComponent :criterion="criterion" :levels="rubrics.levels" :score="scores" />
+        </template>
       </template>
 
       <Separator class="my-2"/>

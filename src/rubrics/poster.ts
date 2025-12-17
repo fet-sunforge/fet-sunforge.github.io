@@ -1,6 +1,7 @@
+import type { Rubric } from '@/types/rubrics';
 import { ref } from 'vue';
 
-export const rubrics = ref({
+export const rubrics = ref<Rubric>({
   id: 'poster',
   title: 'Poster',
   description: 'Create a poster that effectively communicates your project.',
