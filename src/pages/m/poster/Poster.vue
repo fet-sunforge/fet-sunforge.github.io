@@ -77,7 +77,7 @@ const scores = ref(0)
         <MarkProjectDetails :coursecode="courseCode" :itemindex="itemIndex"/>
         <Separator class="my-2"/>
         <template v-for="criterion in rubrics.criteria" :key="criterion.id">
-          <AssessmentComponent :criterion="criterion" :levels="rubrics.levels" :score="scores" />
+          <AssessmentComponent :criterion="criterion" :levels="rubrics.levels" v-model="scores" />
         </template>
       </template>
 
