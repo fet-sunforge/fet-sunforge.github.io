@@ -16,7 +16,7 @@ export const courses = ref([{
     desc: 'Malaysia’s agricultural sector generates a substantial amount of biomass annually, mainly from palm oil mills, rice cultivation, and rubber industries. Improper disposal of biomass produced via open burning and landfilling releases many greenhouse gases into the atmosphere, causing severe air pollution, soil contamination, and health impacts. Agricultural waste valorization converts wastes into renewable bioethanol. This process reduces emissions, strengthens energy security, and promotes economic development.',
     pic: ['Han Chit Su San, Aarthii Jeyaganesh, Justin Drew Macabuhay, Saida Hassan, Koh Si Jia, Ong Chun Hao']
   }, {
-    title: 'Sustainable TiO<sub>2</sub> Production Process Retrofit Solution for Increased Yield',
+    title: 'Sustainable TiO₂ Production Process Retrofit Solution for Increased Yield',
     desc: '60% excess fresh H₂SO₄ is needed for the process, and a lot of liquid acid waste is produced. The process yield itself is low, for the amount of products needed and waste produced. This objective of this project is to reduce wastage and usage of H₂SO₄ while improving TiO₂ yield.',
     pic: ['Caelan Kalanjiam Chelliah, Mohamed Samal Erath Parambil, Severinus Declan, Shakty Yogenthiran A/L Suraj, Tan See Qi, Tseu Zheng Feng']
   }, {
