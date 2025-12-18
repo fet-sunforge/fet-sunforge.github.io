@@ -66,7 +66,7 @@ import TextIcon from '@/components/TextIcon.vue'
         <div class="flex flex-row gap-2">
           <TextIcon v-if="activePage.short" :text="activePage.short" :size="30"></TextIcon>
           <component v-if="activePage.icon" :is="activePage.icon" :size="30" :stroke-width="1" />
-          {{ activePage.name }}
+          <span class="line-clamp-1 overflow-hidden">{{ activePage.name }}</span>
         </div>
       </GlobalMenu>
     </DialogTrigger>

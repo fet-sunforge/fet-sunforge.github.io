@@ -23,7 +23,7 @@ const {
 </script>
 
 <template>
-  <div class="flex flex-col w-screen h-screen items-center overflow-auto pt-20 pb-10">
+  <div class="flex flex-col w-screen h-screen items-center overflow-auto pt-23 pb-10">
     <GlobalSelectionMenu></GlobalSelectionMenu>
     <div class="flex flex-col gap-3 max-w-6xl w-full max-h-full px-10 overflow-auto" style="margin-top: auto; margin-bottom: auto;">
       <template v-for="(course, cid) in courses" :key="course.name">

@@ -43,7 +43,7 @@ const committeeMembers = [{
 </script>
 
 <template>
-  <div class="flex flex-col w-screen h-screen items-center text-lg overflow-auto pt-20 pb-10">
+  <div class="flex flex-col w-screen h-screen items-center text-lg overflow-auto pt-23 pb-10">
     <GlobalSelectionMenu></GlobalSelectionMenu>
     <div class="flex flex-col items-center gap-3 max-w-6xl w-full px-10" style="margin-top: auto; margin-bottom: auto;">
       <div>This event is co-organised by</div>
