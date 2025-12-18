@@ -41,7 +41,7 @@ defineEmits(["close"])
           <DialogDescription class="flex flex-row gap-2 overflow-hidden">
             <UsersIcon v-if="group"/>
             <UserIcon v-else />
-            <div class="flex-1 text-nowrap overflow-hidden text-ellipsis">{{ item.pic.join(", ") }}</div>
+            <div class="flex-1">{{ item.pic.join(", ") }}</div>
           </DialogDescription>
         </DialogHeader>
 
