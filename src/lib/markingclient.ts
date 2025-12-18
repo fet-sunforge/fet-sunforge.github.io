@@ -43,6 +43,23 @@ export interface AssessorInfo {
   }[];
 }
 
+export interface CreateAssessorRequest {
+  assessor: string;
+  name: string;
+  courses?: {
+    name: string;
+    components: string[];
+  }[];
+}
+
+export interface UpdateAssessorRequest {
+  name?: string;
+  courses?: {
+    name: string;
+    components: string[];
+  }[];
+}
+
 export interface AssessedMark {
   documentId: string;
   assessor: string;
@@ -57,6 +74,22 @@ export interface AssessedMarksResponse {
   component: string;
   totalSubmissions: number;
   assessments: AssessedMark[];
+}
+
+export interface MultipleCoursesRequest {
+  courses: string[];
+}
+
+export interface MultipleCoursesResponse {
+  component: string;
+  courses: string[];
+  totalSubmissions: number;
+  resultsByCourse: {
+    [course: string]: {
+      submissions: number;
+      assessments: AssessedMark[];
+    };
+  };
 }
 
 export interface ErrorResponse {
@@ -159,6 +192,81 @@ export const getAssessorInfo = async (
   }
 };
 
+export const createAssessor = async (
+  request: CreateAssessorRequest
+): Promise<AssessorInfo> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/assessor`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to create assessor');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Create assessor error:', error);
+    throw error;
+  }
+};
+
+export const updateAssessor = async (
+  assessorCode: string,
+  request: UpdateAssessorRequest
+): Promise<AssessorInfo> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/assessor/${encodeURIComponent(assessorCode)}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(request),
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to update assessor');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Update assessor error:', error);
+    throw error;
+  }
+};
+
+export const deleteAssessor = async (
+  assessorCode: string
+): Promise<{ success: boolean; message: string }> => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/assessor/${encodeURIComponent(assessorCode)}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to delete assessor');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Delete assessor error:', error);
+    throw error;
+  }
+};
+
 export const healthCheck = async (): Promise<{ status: string }> => {
   try {
     const response = await fetch(`${API_BASE_URL}/health`, {
@@ -200,6 +308,35 @@ export const getAssessedMarks = async (
     return data;
   } catch (error) {
     console.error('Get assessed marks error:', error);
+    throw error;
+  }
+};
+
+export const getAssessedMarksMultipleCourses = async (
+  component: string,
+  courses: string[]
+): Promise<MultipleCoursesResponse> => {
+  try {
+    const response = await fetch(
+      `${API_BASE_URL}/assessed/component/${encodeURIComponent(component)}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ courses }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to get assessed marks for multiple courses');
+    }
+
+    return data;
+  } catch (error) {
+    console.error('Get assessed marks for multiple courses error:', error);
     throw error;
   }
 };
