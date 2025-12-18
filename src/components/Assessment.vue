@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import type { Rubric } from '@/types/rubrics';
 import AssessmentComponent from '@/components/AssessmentComponent.vue'
-import { Button } from '@/components/ui/button';
+import AssessmentSubmit from '@/components/AssessmentSubmit.vue';
 import type { AssessorInfo } from '@/lib/markingclient';
 import { validateAssessor } from '@/lib/markingclient';
 import { Alert, AlertDescription } from '@/components/ui/alert';
@@ -18,6 +18,10 @@ const props = defineProps<{
 
 // const scores = ref(new Map<string, number>());
 const scores = ref<Record<string, number>>({});
+const savedScores = ref<Record<string, number>>({});
+const scoresChanged = computed(() => {
+  return JSON.stringify(scores.value) !== JSON.stringify(savedScores.value);
+});
 
 onMounted(() => {
   loadExistingMarks();
@@ -25,11 +29,10 @@ onMounted(() => {
 
 const updateScore = (criterionId: string, score: number) => {
   scores.value[criterionId] = score;
-  saveScores();
 };
 
-const saveScores = () => {
-  // save to DB
+const resetScores = () => {
+  scores.value = { ...savedScores.value };
 };
 
 const loading = ref(false);
@@ -48,6 +51,7 @@ const loadExistingMarks = async () => {
       itemIndex: props.itemindex,
     })
 
+    props.rubrics.criteria.forEach(criterion => scores.value[criterion.id] = 0);
     if (response.valid && response.existingMarks) {
       let keysInScores = Object.keys(scores.value)
       let keysInExistingMarks = Object.keys(response.existingMarks)
@@ -59,10 +63,10 @@ const loadExistingMarks = async () => {
       message.value = 'Loaded existing marks'
       messageType.value = 'default'
     } else {
-      props.rubrics.criteria.forEach(criterion => scores.value[criterion.id] = 0);
       message.value = 'No existing marks found - starting new assessment'
       messageType.value = 'default'
     }
+    savedScores.value = {...scores.value};
   } catch (error) {
     console.error('Failed to load marks:', error)
     message.value = 'Error loading marks'
@@ -71,6 +75,10 @@ const loadExistingMarks = async () => {
     loading.value = false
   }
 }
+
+const afterSaved = () => {
+  savedScores.value = {...scores.value};
+};
 </script>
 
 <template>
@@ -86,5 +94,19 @@ const loadExistingMarks = async () => {
       :score="scores[criterion.id] || 0"
       @update:score="updateScore(criterion.id, $event)" />
   </template>
-  <Button @click="saveScores" class="bg-emerald-600 rounded hover:bg-emerald-700">Save</Button>
+  <AssessmentSubmit
+    :scores="scores"
+    :assessor="props.assessor"
+    :coursecode="props.coursecode"
+    :component="props.component"
+    :itemindex="props.itemindex"
+    @saved="afterSaved"
+  />
+  <template v-if="scoresChanged">
+    <Alert variant="destructive">
+      <AlertTriangleIcon />
+      <AlertDescription>You have unsaved changes</AlertDescription>
+    </Alert>
+    <Button @click="resetScores">Reset Scores</Button>
+  </template>
 </template>
