@@ -7,6 +7,7 @@ import type { AssessorInfo } from '@/lib/markingclient';
 import { validateAssessor } from '@/lib/markingclient';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { AlertTriangleIcon, Info } from 'lucide-vue-next';
+import { Button } from '@/components/ui/button';
 
 const props = defineProps<{
   rubrics: Rubric;
@@ -29,6 +30,7 @@ onMounted(() => {
 
 const updateScore = (criterionId: string, score: number) => {
   scores.value[criterionId] = score;
+  console.log(scores.value)
 };
 
 const resetScores = () => {
@@ -41,7 +43,8 @@ const messageType = ref<'default' | 'destructive' | null>(null);
 
 const loadExistingMarks = async () => {
   loading.value = true
-  message.value = ''
+  message.value = 'Loading...'
+  messageType.value = "default"
 
   try {
     const response = await validateAssessor({
@@ -87,26 +90,28 @@ const afterSaved = () => {
     <AlertTriangleIcon v-else />
     <AlertDescription>{{ message }}</AlertDescription>
   </Alert>
-  <template v-for="criterion in rubrics.criteria" :key="criterion.id">
-    <AssessmentComponent
-      :criterion="criterion"
-      :levels="rubrics.levels"
-      :score="scores[criterion.id] || 0"
-      @update:score="updateScore(criterion.id, $event)" />
-  </template>
-  <AssessmentSubmit
-    :scores="scores"
-    :assessor="props.assessor"
-    :coursecode="props.coursecode"
-    :component="props.component"
-    :itemindex="props.itemindex"
-    @saved="afterSaved"
-  />
-  <template v-if="scoresChanged">
-    <Alert variant="destructive">
-      <AlertTriangleIcon />
-      <AlertDescription>You have unsaved changes</AlertDescription>
-    </Alert>
-    <Button @click="resetScores">Reset Scores</Button>
+  <template v-if="!loading">
+    <template v-for="criterion in rubrics.criteria" :key="criterion.id">
+      <AssessmentComponent
+        :criterion="criterion"
+        :levels="rubrics.levels"
+        :score="scores[criterion.id] || 0"
+        @update:score="updateScore(criterion.id, $event)" />
+    </template>
+    <AssessmentSubmit
+      :scores="scores"
+      :assessor="props.assessor"
+      :coursecode="props.coursecode"
+      :component="props.component"
+      :itemindex="props.itemindex"
+      @saved="afterSaved"
+    />
+    <template v-if="scoresChanged">
+      <Alert variant="destructive">
+        <AlertTriangleIcon />
+        <AlertDescription>You have unsaved changes</AlertDescription>
+      </Alert>
+      <Button @click="resetScores">Reset Scores</Button>
+    </template>
   </template>
 </template>
