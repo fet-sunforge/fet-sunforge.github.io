@@ -38,6 +38,7 @@ const resetScores = () => {
 };
 
 const loading = ref(false);
+const showComponents = ref(false);
 const message = ref('');
 const messageType = ref<'default' | 'destructive' | null>(null);
 
@@ -45,6 +46,7 @@ const loadExistingMarks = async () => {
   loading.value = true
   message.value = 'Loading...'
   messageType.value = "default"
+  showComponents.value = false
 
   try {
     const response = await validateAssessor({
@@ -70,10 +72,12 @@ const loadExistingMarks = async () => {
       messageType.value = 'default'
     }
     savedScores.value = {...scores.value};
+    showComponents.value = true
   } catch (error) {
     console.error('Failed to load marks:', error)
     message.value = 'Error loading marks'
     messageType.value = 'destructive'
+    showComponents.value = false
   } finally {
     loading.value = false
   }
@@ -90,7 +94,7 @@ const afterSaved = () => {
     <AlertTriangleIcon v-else />
     <AlertDescription>{{ message }}</AlertDescription>
   </Alert>
-  <template v-if="!loading">
+  <template v-if="showComponents">
     <template v-for="criterion in rubrics.criteria" :key="criterion.id">
       <AssessmentComponent
         :criterion="criterion"
