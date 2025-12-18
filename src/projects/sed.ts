@@ -13,7 +13,7 @@ export const courses = ref([{
     pic: ['Jordan Douglas Su E -Wern', 'Raja Muhammad Harith Bin Raja Shahrul Azian', 'Jordan Yong Tze Hsiang', 'Puteri Amelya Dania Binti Megat Arizal Izram', 'Nicholas Lee Yong Wei']
   }, {
     title: 'Automation for Sustainability: A Smart Waste Sorting Solution for Sunway City',
-    desc: 'abstract',
+    desc: 'Due to the generation of large volumes of mixed waste and current manual sorting practices, a smart automated waste sorting machine is needed to improve recycling accuracy and increase sustainability',
     pic: ['Alif Meherin', 'Bibi Irrma Fatimah Takun', 'Oh Yu Qiao', 'Tay Li Yuen', 'Yeoh Wei Dong']
   }]
 }] as Array<Course>);
