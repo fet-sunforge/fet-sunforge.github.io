@@ -18,6 +18,7 @@ export function useDialogWithURL(
 
   const selectedCourse = ref<Course | null>(null)
   const selectedItem = ref<Project | null>(null)
+  const selectedItemIndex = ref<number>(0)
   const dialogOpen = ref(false)
 
   // read item from URL param
@@ -54,6 +55,7 @@ export function useDialogWithURL(
   function openDialog(sectionIdx: number, itemIdx: number) {
     selectedCourse.value = items[sectionIdx] as Course
     selectedItem.value = items[sectionIdx]?.projects[itemIdx] as Project
+    selectedItemIndex.value = itemIdx
     dialogOpen.value = true
 
     const url = new URL(window.location.href)
@@ -91,6 +93,7 @@ export function useDialogWithURL(
   return {
     selectedCourse,
     selectedItem,
+    selectedItemIndex,
     dialogOpen,
     openDialog,
     closeDialog,

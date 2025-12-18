@@ -11,6 +11,7 @@ import { courses } from '@/projects/idp.ts';
 const {
   selectedCourse,
   selectedItem,
+  selectedItemIndex,
   dialogOpen,
   openDialog,
   closeDialog
@@ -42,6 +43,7 @@ const {
      v-if="selectedItem && selectedCourse"
      :course="selectedCourse"
      :item="selectedItem"
+     :itemindex="selectedItemIndex"
      :group="true"
      :open="dialogOpen"
      @close="closeDialog"

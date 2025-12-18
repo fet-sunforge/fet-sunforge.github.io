@@ -11,10 +11,12 @@ import { Button } from "@/components/ui/button"
 import type { Course, Project } from "@/interfaces";
 import CourseDescription from "@/components/CourseDescription.vue";
 import { UsersIcon, UserIcon } from "lucide-vue-next";
+import AssessmentButton from "@/components/AssessmentButton.vue";
 
 defineProps<{
   course: Course
   item: Project
+  itemindex: number
   open: boolean
   group?: boolean
 }>()
@@ -24,7 +26,7 @@ defineEmits(["close"])
 
 <template>
   <Dialog :open="open" @update:open="$emit('close')">
-    <DialogContent class="p-0 overflow-hidden rounded-xl">
+    <DialogContent class="p-0 overflow-auto max-h-11/12 rounded-xl">
       <div
         v-motion
         :initial="{ scale: 0.85, opacity: 0 }"
@@ -46,6 +48,11 @@ defineEmits(["close"])
         <p class="text-sm text-muted-foreground" v-html="item.desc"></p>
 
         <DialogFooter>
+          <AssessmentButton
+            :course="course"
+            :itemindex="itemindex"
+          />
+          <div class="flex-1"></div>
           <Button @click="$emit('close')">Close</Button>
         </DialogFooter>
       </div>

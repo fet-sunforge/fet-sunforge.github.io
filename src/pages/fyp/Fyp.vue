@@ -11,6 +11,7 @@ import { courses } from '@/projects/fyp.ts';
 const {
   selectedCourse,
   selectedItem,
+  selectedItemIndex,
   dialogOpen,
   openDialog,
   closeDialog
@@ -41,6 +42,7 @@ const {
      v-if="selectedItem && selectedCourse"
      :course="selectedCourse"
      :item="selectedItem"
+     :itemindex="selectedItemIndex"
      :open="dialogOpen"
      @close="closeDialog"
    />
