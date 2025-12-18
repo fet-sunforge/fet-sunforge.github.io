@@ -49,7 +49,13 @@ const loadExistingMarks = async () => {
     })
 
     if (response.valid && response.existingMarks) {
-      scores.value = response.existingMarks
+      let keysInScores = Object.keys(scores.value)
+      let keysInExistingMarks = Object.keys(response.existingMarks)
+      keysInExistingMarks.forEach(key => {
+        if (keysInScores.includes(key)) {
+          scores.value[key] = response.existingMarks?.[key] || 0
+        }
+      })
       message.value = 'Loaded existing marks'
       messageType.value = 'default'
     } else {
