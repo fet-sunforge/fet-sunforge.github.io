@@ -28,7 +28,7 @@ const {
     <div class="flex flex-col gap-3 max-w-6xl w-full max-h-full px-10 overflow-auto" style="margin-top: auto; margin-bottom: auto;">
       <template v-for="(course, cid) in courses" :key="course.name">
         <CourseDescription :course="course" />
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 grow flex-1">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 grow flex-1">
           <ItemCard
             v-for="(project, pid) in course.projects"
             :key="pid"
