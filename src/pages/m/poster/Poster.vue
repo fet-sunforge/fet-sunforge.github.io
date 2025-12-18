@@ -7,8 +7,8 @@ import ThemeFab from "@/components/ThemeFab.vue";
 import { Button } from "@/components/ui/button";
 import { Separator } from '@/components/ui/separator';
 import MarkProjectDetails from '@/components/MarkProjectDetails.vue'
-import AssessmentComponent from '@/components/AssessmentComponent.vue'
 import { rubrics } from '@/rubrics/poster';
+import Assessment from '@/components/Assessment.vue';
 
 const assessor = ref<AssessorInfo | null>(null)
 const loading = ref(true)
@@ -42,8 +42,6 @@ itemIndex.value = url.searchParams.get(itemIndexLabel) ? parseInt(url.searchPara
 const afterLogin = async (info: AssessorInfo) => {
   assessor.value = info
 }
-
-const scores = ref(0)
 </script>
 
 <template>
@@ -76,9 +74,7 @@ const scores = ref(0)
         <Separator class="my-2"/>
         <MarkProjectDetails :coursecode="courseCode" :itemindex="itemIndex"/>
         <Separator class="my-2"/>
-        <template v-for="criterion in rubrics.criteria" :key="criterion.id">
-          <AssessmentComponent :criterion="criterion" :levels="rubrics.levels" v-model="scores" />
-        </template>
+        <Assessment :rubrics="rubrics" />
       </template>
 
       <Separator class="my-2"/>

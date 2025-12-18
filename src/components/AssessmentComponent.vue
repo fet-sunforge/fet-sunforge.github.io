@@ -8,16 +8,17 @@ import { onMounted, ref } from 'vue';
 const props = defineProps<{
   criterion: Criterion;
   levels: Array<{ from: number, to: number }>;
+  score: number;
 }>();
 
-const score = defineModel<number>();
+const emit = defineEmits(['update:score']);
 
 const scorelist = ref<number[]>([]);
 onMounted(() => {
   scorelist.value = [0, ...Array.from({ length: props.criterion.maxScore }, (_, i) => i + 1)];
 });
 const updateScore = (s: number) => {
-  score.value = s;
+  emit('update:score', s);
 };
 </script>
 
