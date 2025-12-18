@@ -74,7 +74,13 @@ const afterLogin = async (info: AssessorInfo) => {
         <Separator class="my-2"/>
         <MarkProjectDetails :coursecode="courseCode" :itemindex="itemIndex"/>
         <Separator class="my-2"/>
-        <Assessment :rubrics="rubrics" />
+        <Assessment
+          :rubrics="rubrics"
+          :assessor="assessor"
+          :coursecode="courseCode"
+          component="poster"
+          :itemindex="itemIndex"
+        />
       </template>
 
       <Separator class="my-2"/>
