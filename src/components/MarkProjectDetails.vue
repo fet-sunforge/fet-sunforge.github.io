@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
-import { retrieveProjectDetails } from '@/pages/m/utils'
+import { retrieveProjectDetails } from '@/lib/projectdetailsutils'
 import type { Project } from '@/interfaces';
 
 const props = defineProps<{

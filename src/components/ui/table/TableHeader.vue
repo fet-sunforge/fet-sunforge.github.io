@@ -1,3 +1,3 @@
 <template>
-  <div class="flex-1 text-center"><slot></slot></div>
+  <div class="text-center bg-accent p-1"><slot></slot></div>
 </template>
