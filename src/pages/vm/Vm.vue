@@ -10,6 +10,7 @@ import type { Rubric } from '@/types/rubrics';
 import { TableHeader, TableCell } from '@/components/ui/table';
 import { calculateTotalMarks } from '@/lib/markcalculation';
 import { Separator } from '@/components/ui/separator';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 
 const component = ref<string>('poster');
 const rubric = ref<Rubric>(posterRubrics);
@@ -36,6 +37,9 @@ onMounted(async () => {
   await getMarks();
   // result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
 })
+
+const sortBy = ref('course');
+
 </script>
 
 <template>
@@ -49,6 +53,14 @@ onMounted(async () => {
   <div class="flex flex-col w-full items-center">
     <div class="flex flex-col w-full py-10 px-10 gap-3 overflow-auto">
       <div>Best Poster Award Evaluation</div>
+      <div class="flex flex-row gap-2 items-center">
+        <div>Sort by</div>
+        <ToggleGroup type="single" v-model="sortBy" variant="outline">
+          <ToggleGroupItem value="course">Course</ToggleGroupItem>
+          <ToggleGroupItem value="student">Student</ToggleGroupItem>
+          <ToggleGroupItem value="total">Total</ToggleGroupItem>
+        </ToggleGroup>
+      </div>
       <div class="flex flex-row">
         <TableHeader class="w-30">Course</TableHeader>
         <TableHeader class="w-30">Title</TableHeader>
