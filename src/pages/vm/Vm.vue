@@ -3,7 +3,7 @@ import { getAssessedMarksMultipleCourses } from '@/lib/markingclient';
 import { ref, onMounted, computed } from 'vue';
 import { groupAssessedMarksBySubmission, type GroupedSubmission } from '@/lib/helpers';
 import ThemeFab from '@/components/ThemeFab.vue';
-import type { Project } from '@/interfaces';
+import type { Course, Project } from '@/interfaces';
 import { retrieveCourseProjectDetails } from '@/lib/projectdetailsutils';
 import { rubrics as posterRubrics } from '@/rubrics/poster';
 import type { Rubric } from '@/types/rubrics';
@@ -23,7 +23,7 @@ const componentOptions = {
     rubric: posterRubrics
   }
 }
-const component = ref<keyof typeof componentOptions>('');
+const component = ref<keyof typeof componentOptions>('poster');
 const rubric = ref<Rubric>(posterRubrics);
 const courses = ref<string[]>([]);
 
@@ -59,17 +59,17 @@ const sortedprojectindices = computed<number[]>(() => {
   return projectdetails.value
     .map((_, index) => index)
     .sort((a, b) => {
-      let aVal = ''
-      let bVal = ''
+      let aVal: any = ''
+      let bVal: any = ''
       if (sortKey.value === 'course') {
-        aVal = projectdetails.value[a].course.name
-        bVal = projectdetails.value[b].course.name
+        aVal = projectdetails.value[a]!.course.name
+        bVal = projectdetails.value[b]!.course.name
       } else if (sortKey.value === 'student') {
-        aVal = projectdetails.value[a].project.pic.join(' ')
-        bVal = projectdetails.value[b].project.pic.join(' ')
+        aVal = projectdetails.value[a]!.project.pic.join(' ')
+        bVal = projectdetails.value[b]!.project.pic.join(' ')
       } else if (sortKey.value === 'total') {
-        aVal = totalMarks.value[a].total
-        bVal = totalMarks.value[b].total
+        aVal = totalMarks.value[a]!.total
+        bVal = totalMarks.value[b]!.total
       }
 
       const comparisonresult = compare(aVal, bVal)
