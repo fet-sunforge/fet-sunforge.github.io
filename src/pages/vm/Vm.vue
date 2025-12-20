@@ -13,16 +13,29 @@ import { Separator } from '@/components/ui/separator';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Toggle } from '@/components/ui/toggle';
 import { ArrowDownNarrowWide, ArrowUpWideNarrow } from 'lucide-vue-next';
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem, SelectLabel } from '@/components/ui/select';
+import { Button } from '@/components/ui/button';
 
-const component = ref<string>('poster');
+const componentOptions = {
+  'poster': {
+    display: 'Poster',
+    courses: ['beeefyp1', 'beeefyp2', 'bchefyp2'],
+    rubric: posterRubrics
+  }
+}
+const component = ref<keyof typeof componentOptions>('');
 const rubric = ref<Rubric>(posterRubrics);
-const courses = ref<string[]>(['beeefyp1', 'beeefyp2', 'bchefyp2', 'idp1', 'idp2']);
+const courses = ref<string[]>([]);
 
 const result = ref<GroupedSubmission[]>([]);
 const projectdetails = ref<{ course: Course | null, project: Project | null }[]>([]);
 const totalMarks = ref<{assessors: number[], total: number}[]>([]);
 
+const loading = ref(false);
+
 const getMarks = async () => {
+  if (!component.value || !courses.value.length) return;
+  loading.value = true;
   result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
 
   await Promise.all(result.value.map((submission) => retrieveCourseProjectDetails(submission.course, submission.itemIndex)))
@@ -33,10 +46,11 @@ const getMarks = async () => {
         const { assessors, total } = calculateTotalMarks(rubric.value, submission);
         totalMarks.value.push({ assessors, total });
       });
+      loading.value = false;
     });
 }
 onMounted(async () => {
-  await getMarks();
+  // await getMarks();
   // result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
 })
 const sortKey = ref<'course' | 'student' | 'total' >('course');
@@ -80,10 +94,41 @@ function compare(a: unknown, b: unknown) {
   <div>
     <pre>{{ projectdetails }}</pre>
   </div> -->
-  <div class="flex flex-col w-full items-center">
-    <div class="flex flex-col w-full py-10 px-10 gap-4">
+  <div class="flex flex-col w-full items-center gap-3 py-10 px-10">
+    <div class="flex flex-col w-full gap-2">
+      <div class="flex flex-row gap-2">
+        <div class="flex flex-col flex-1">
+          <SelectLabel>Component</SelectLabel>
+          <Select v-model="component">
+            <SelectTrigger class="w-full">
+              <SelectValue placeholder="Select a component" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem v-for="(value, key) in componentOptions" :key="key" :value="key">
+                {{ value.display }}
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+        <div class="flex flex-col flex-1">
+          <SelectLabel>Courses</SelectLabel>
+          <Select v-model="courses" multiple :disabled="component == ''">
+            <SelectTrigger class="w-full">
+              <SelectValue placeholder="Select courses" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem v-if="component != ''" v-for="value in componentOptions[component].courses" :key="value" :value="value">
+                {{ value }}
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      <Button variant="outline" @click="getMarks" :disabled="loading">{{ loading ? 'Loading...' : 'Load Marks' }}</Button>
+    </div>
+    <div class="flex flex-col w-full gap-4" v-if="result && result.length > 0">
       <div class="flex flex-row w-full gap-1 items-center">
-        <div class="grow">Best Poster Award Evaluation</div>
+        <div class="grow"></div>
         <div class="flex flex-row gap-2 items-center">
           <div>Sort by</div>
           <ToggleGroup type="single" v-model="sortKey" variant="outline">
