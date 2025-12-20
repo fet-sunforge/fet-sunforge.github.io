@@ -23,7 +23,7 @@ const componentOptions = {
     rubric: posterRubrics
   }
 }
-const component = ref<keyof typeof componentOptions>('poster');
+const component = ref<keyof typeof componentOptions|''>('poster');
 const rubric = ref<Rubric>(posterRubrics);
 const courses = ref<string[]>([]);
 
@@ -62,11 +62,11 @@ const sortedprojectindices = computed<number[]>(() => {
       let aVal: any = ''
       let bVal: any = ''
       if (sortKey.value === 'course') {
-        aVal = projectdetails.value[a]!.course.name
-        bVal = projectdetails.value[b]!.course.name
+        aVal = projectdetails.value[a]!.course!.name
+        bVal = projectdetails.value[b]!.course!.name
       } else if (sortKey.value === 'student') {
-        aVal = projectdetails.value[a]!.project.pic.join(' ')
-        bVal = projectdetails.value[b]!.project.pic.join(' ')
+        aVal = projectdetails.value[a]!.project!.pic.join(' ')
+        bVal = projectdetails.value[b]!.project!.pic.join(' ')
       } else if (sortKey.value === 'total') {
         aVal = totalMarks.value[a]!.total
         bVal = totalMarks.value[b]!.total
@@ -152,9 +152,9 @@ function compare(a: unknown, b: unknown) {
         </div>
         <template v-for="index in sortedprojectindices" v-if="projectdetails.length > 0">
           <div class="flex flex-row gap-1">
-            <TableCell class="w-30">{{ projectdetails[index].course?.name }}</TableCell>
-            <TableCell class="w-30 line-clamp-5" :title="projectdetails[index].project?.title">{{ projectdetails[index].project?.title }}</TableCell>
-            <TableCell class="w-30">{{ projectdetails[index].project?.pic?.join(', ') }}</TableCell>
+            <TableCell class="w-30">{{ projectdetails[index]?.course?.name }}</TableCell>
+            <TableCell class="w-30 line-clamp-5" :title="projectdetails[index]?.project?.title">{{ projectdetails[index]?.project?.title }}</TableCell>
+            <TableCell class="w-30">{{ projectdetails[index]?.project?.pic?.join(', ') }}</TableCell>
             <TableCell class="grow">
               <div class="flex flex-row">
                 <div class="flex-1">Assessor</div>
