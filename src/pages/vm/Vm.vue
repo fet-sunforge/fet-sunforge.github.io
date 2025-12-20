@@ -11,6 +11,8 @@ import { TableHeader, TableCell } from '@/components/ui/table';
 import { calculateTotalMarks } from '@/lib/markcalculation';
 import { Separator } from '@/components/ui/separator';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Toggle } from '@/components/ui/toggle';
+import { ArrowDownNarrowWide, ArrowUpWideNarrow } from 'lucide-vue-next';
 
 const component = ref<string>('poster');
 const rubric = ref<Rubric>(posterRubrics);
@@ -37,8 +39,36 @@ onMounted(async () => {
   await getMarks();
   // result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
 })
+const sortKey = ref<'course' | 'student' | 'total' >('course');
+const sortOrderAsc = ref<boolean>(true);
+const sortedprojectindices = computed<number[]>(() => {
+  return projectdetails.value
+    .map((_, index) => index)
+    .sort((a, b) => {
+      let aVal = ''
+      let bVal = ''
+      if (sortKey.value === 'course') {
+        aVal = projectdetails.value[a].course.name
+        bVal = projectdetails.value[b].course.name
+      } else if (sortKey.value === 'student') {
+        aVal = projectdetails.value[a].project.pic.join(' ')
+        bVal = projectdetails.value[b].project.pic.join(' ')
+      } else if (sortKey.value === 'total') {
+        aVal = totalMarks.value[a].total
+        bVal = totalMarks.value[b].total
+      }
 
-const sortBy = ref('course');
+      const comparisonresult = compare(aVal, bVal)
+      return sortOrderAsc.value ? comparisonresult : -comparisonresult
+    })
+})
+function compare(a: unknown, b: unknown) {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a - b
+  }
+  return String(a).localeCompare(String(b))
+}
+
 
 </script>
 
@@ -52,15 +82,19 @@ const sortBy = ref('course');
   </div> -->
   <div class="flex flex-col w-full items-center">
     <div class="flex flex-col w-full py-10 px-10 gap-4">
-      <div class="flex flex-row w-full gap-1 items-baseline">
+      <div class="flex flex-row w-full gap-1 items-center">
         <div class="grow">Best Poster Award Evaluation</div>
-        <div class="flex flex-row gap-2 items-baseline">
+        <div class="flex flex-row gap-2 items-center">
           <div>Sort by</div>
-          <ToggleGroup type="single" v-model="sortBy" variant="outline">
+          <ToggleGroup type="single" v-model="sortKey" variant="outline">
             <ToggleGroupItem value="course">Course</ToggleGroupItem>
             <ToggleGroupItem value="student">Student</ToggleGroupItem>
             <ToggleGroupItem value="total">Total</ToggleGroupItem>
           </ToggleGroup>
+          <Toggle v-model="sortOrderAsc" variant="outline">
+            <ArrowDownNarrowWide v-if="sortOrderAsc" />
+            <ArrowUpWideNarrow v-else />
+          </Toggle>
         </div>
       </div>
       <div class="flex flex-col w-full gap-1 overflow-auto" aria-label="table">
@@ -71,7 +105,7 @@ const sortBy = ref('course');
           <TableHeader class="grow">Assessors</TableHeader>
           <TableHeader class="w-30">Total</TableHeader>
         </div>
-        <template v-for="(submission, index) in result" v-if="projectdetails.length > 0">
+        <template v-for="index in sortedprojectindices" v-if="projectdetails.length > 0">
           <div class="flex flex-row gap-1">
             <TableCell class="w-30">{{ projectdetails[index].course?.name }}</TableCell>
             <TableCell class="w-30 line-clamp-5" :title="projectdetails[index].project?.title">{{ projectdetails[index].project?.title }}</TableCell>
@@ -82,7 +116,7 @@ const sortBy = ref('course');
                 <div class="flex-1" v-for="criterion in rubric.criteria">{{ criterion.title }}</div>
                 <div class="flex-1">Total</div>
               </div>
-              <div class="flex flex-row" v-for="(assessor, aindex) in submission.assessors">
+              <div class="flex flex-row" v-for="(assessor, aindex) in result[index].assessors">
                 <div class="flex-1">{{ assessor.assessorCode }}</div>
                 <div class="flex-1" v-for="criterion in rubric.criteria">{{ assessor.marks[criterion.id] }}</div>
                 <div class="flex-1">{{ Math.round(totalMarks[index]?.assessors[aindex]) }}</div>
