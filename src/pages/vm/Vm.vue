@@ -3,7 +3,7 @@ import { getAssessedMarksMultipleCourses } from '@/lib/markingclient';
 import { ref, onMounted, computed } from 'vue';
 import { groupAssessedMarksBySubmission, type GroupedSubmission } from '@/lib/helpers';
 import ThemeFab from '@/components/ThemeFab.vue';
-import { Project } from '@/interfaces';
+import type { Project } from '@/interfaces';
 import { retrieveCourseProjectDetails } from '@/lib/projectdetailsutils';
 import { rubrics as posterRubrics } from '@/rubrics/poster';
 import type { Rubric } from '@/types/rubrics';
