@@ -51,44 +51,48 @@ const sortBy = ref('course');
     <pre>{{ projectdetails }}</pre>
   </div> -->
   <div class="flex flex-col w-full items-center">
-    <div class="flex flex-col w-full py-10 px-10 gap-3 overflow-auto">
-      <div>Best Poster Award Evaluation</div>
-      <div class="flex flex-row gap-2 items-center">
-        <div>Sort by</div>
-        <ToggleGroup type="single" v-model="sortBy" variant="outline">
-          <ToggleGroupItem value="course">Course</ToggleGroupItem>
-          <ToggleGroupItem value="student">Student</ToggleGroupItem>
-          <ToggleGroupItem value="total">Total</ToggleGroupItem>
-        </ToggleGroup>
-      </div>
-      <div class="flex flex-row">
-        <TableHeader class="w-30">Course</TableHeader>
-        <TableHeader class="w-30">Title</TableHeader>
-        <TableHeader class="w-30">Student(s)</TableHeader>
-        <TableHeader class="grow">Assessors</TableHeader>
-        <TableHeader class="w-30">Total</TableHeader>
-      </div>
-      <template v-for="(submission, index) in result" v-if="projectdetails.length > 0">
-        <div class="flex flex-row">
-          <TableCell class="w-30">{{ projectdetails[index].course?.name }}</TableCell>
-          <TableCell class="w-30 line-clamp-5" :title="projectdetails[index].project?.title">{{ projectdetails[index].project?.title }}</TableCell>
-          <TableCell class="w-30">{{ projectdetails[index].project?.pic?.join(', ') }}</TableCell>
-          <TableCell class="grow">
-            <div class="flex flex-row">
-              <div class="flex-1">Assessor</div>
-              <div class="flex-1" v-for="criterion in rubric.criteria">{{ criterion.title }}</div>
-              <div class="flex-1">Total</div>
-            </div>
-            <div class="flex flex-row" v-for="(assessor, aindex) in submission.assessors">
-              <div class="flex-1">{{ assessor.assessorCode }}</div>
-              <div class="flex-1" v-for="criterion in rubric.criteria">{{ assessor.marks[criterion.id] }}</div>
-              <div class="flex-1">{{ Math.round(totalMarks[index]?.assessors[aindex]) }}</div>
-            </div>
-          </TableCell>
-          <TableCell class="w-30">{{ Math.round(totalMarks[index]?.total) }}</TableCell>
+    <div class="flex flex-col w-full py-10 px-10 gap-4">
+      <div class="flex flex-row w-full gap-1 items-baseline">
+        <div class="grow">Best Poster Award Evaluation</div>
+        <div class="flex flex-row gap-2 items-baseline">
+          <div>Sort by</div>
+          <ToggleGroup type="single" v-model="sortBy" variant="outline">
+            <ToggleGroupItem value="course">Course</ToggleGroupItem>
+            <ToggleGroupItem value="student">Student</ToggleGroupItem>
+            <ToggleGroupItem value="total">Total</ToggleGroupItem>
+          </ToggleGroup>
         </div>
-        <Separator class="my-2" />
-      </template>
+      </div>
+      <div class="flex flex-col w-full gap-1 overflow-auto" aria-label="table">
+        <div class="flex flex-row gap-1">
+          <TableHeader class="w-30">Course</TableHeader>
+          <TableHeader class="w-30">Title</TableHeader>
+          <TableHeader class="w-30">Student(s)</TableHeader>
+          <TableHeader class="grow">Assessors</TableHeader>
+          <TableHeader class="w-30">Total</TableHeader>
+        </div>
+        <template v-for="(submission, index) in result" v-if="projectdetails.length > 0">
+          <div class="flex flex-row gap-1">
+            <TableCell class="w-30">{{ projectdetails[index].course?.name }}</TableCell>
+            <TableCell class="w-30 line-clamp-5" :title="projectdetails[index].project?.title">{{ projectdetails[index].project?.title }}</TableCell>
+            <TableCell class="w-30">{{ projectdetails[index].project?.pic?.join(', ') }}</TableCell>
+            <TableCell class="grow">
+              <div class="flex flex-row">
+                <div class="flex-1">Assessor</div>
+                <div class="flex-1" v-for="criterion in rubric.criteria">{{ criterion.title }}</div>
+                <div class="flex-1">Total</div>
+              </div>
+              <div class="flex flex-row" v-for="(assessor, aindex) in submission.assessors">
+                <div class="flex-1">{{ assessor.assessorCode }}</div>
+                <div class="flex-1" v-for="criterion in rubric.criteria">{{ assessor.marks[criterion.id] }}</div>
+                <div class="flex-1">{{ Math.round(totalMarks[index]?.assessors[aindex]) }}</div>
+              </div>
+            </TableCell>
+            <TableCell class="w-30">{{ Math.round(totalMarks[index]?.total) }}</TableCell>
+          </div>
+          <Separator class="my-2" />
+        </template>
+      </div>
     </div>
   </div>
   <ThemeFab />
