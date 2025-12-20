@@ -161,13 +161,13 @@ function compare(a: unknown, b: unknown) {
                 <div class="flex-1" v-for="criterion in rubric.criteria">{{ criterion.title }}</div>
                 <div class="flex-1">Total</div>
               </div>
-              <div class="flex flex-row" v-for="(assessor, aindex) in result[index].assessors">
+              <div class="flex flex-row" v-for="(assessor, aindex) in result[index]!.assessors">
                 <div class="flex-1">{{ assessor.assessorCode }}</div>
                 <div class="flex-1" v-for="criterion in rubric.criteria">{{ assessor.marks[criterion.id] }}</div>
-                <div class="flex-1">{{ Math.round(totalMarks[index]?.assessors[aindex]) }}</div>
+                <div class="flex-1">{{ Math.round(totalMarks[index]?.assessors[aindex] as number) }}</div>
               </div>
             </TableCell>
-            <TableCell class="w-30">{{ Math.round(totalMarks[index]?.total) }}</TableCell>
+            <TableCell class="w-30">{{ Math.round(totalMarks[index]?.total as number) }}</TableCell>
           </div>
           <Separator class="my-2" />
         </template>
