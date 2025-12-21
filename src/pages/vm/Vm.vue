@@ -63,7 +63,7 @@ const projectdetails = ref<{ course: Course | null, project: Project | null }[]>
 const totalMarks = computed<{assessors: number[], total: number}[]>(() => {
   if (!component.value || !courses.value.length) return [];
   return result.value.map((submission) => {
-    const { assessors, total } = calculateTotalMarks(rubric.value, submission);
+    const { assessors, total } = calculateTotalMarks(rubric.value as Rubric, submission);
     return { assessors, total };
   });
 });
@@ -74,7 +74,7 @@ const getMarks = async () => {
   result.value = [];
   projectdetails.value = [];
 
-  result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value, admin.value.admin));
+  result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value, admin.value!.admin));
 
   await Promise.all(result.value.map((submission) => retrieveCourseProjectDetails(submission.course, submission.itemIndex)))
     .then((details) => {
@@ -201,12 +201,12 @@ function compare(a: unknown, b: unknown) {
               <TableCell class="grow">
                 <div class="flex flex-row">
                   <div class="flex-1">Assessor</div>
-                  <div class="flex-1" v-for="criterion in rubric.criteria">{{ criterion.title }}</div>
+                  <div class="flex-1" v-for="criterion in rubric!.criteria">{{ criterion.title }}</div>
                   <div class="flex-1">Total</div>
                 </div>
                 <div class="flex flex-row" v-for="(assessor, aindex) in result[index]!.assessors">
                   <div class="flex-1">{{ assessor.assessorCode }}</div>
-                  <div class="flex-1" v-for="criterion in rubric.criteria">{{ assessor.marks[criterion.id] }}</div>
+                  <div class="flex-1" v-for="criterion in rubric!.criteria">{{ assessor.marks[criterion.id] }}</div>
                   <div class="flex-1">{{ Math.round(totalMarks[index]?.assessors[aindex] as number) }}</div>
                 </div>
               </TableCell>

@@ -1,4 +1,4 @@
-import type { MultipleCoursesResponse } from './markingclient';
+import type { MultipleCoursesResponse } from '@/lib/adminclient';
 
 // Helper function to group assessed marks by course and itemIndex
 export interface GroupedSubmission {
