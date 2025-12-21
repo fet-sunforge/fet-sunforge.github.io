@@ -3,7 +3,7 @@ import GlobalMenu from '@/components/GlobalMenu.vue'
 import { ref, onMounted, computed } from 'vue';
 import type { ComputedRef, FunctionalComponent } from 'vue';
 import type { LucideProps } from 'lucide-vue-next';
-import { HouseIcon, InfoIcon, VectorSquareIcon } from 'lucide-vue-next';
+import { BookDownIcon, HouseIcon, InfoIcon, VectorSquareIcon } from 'lucide-vue-next';
 
 const pages: Array<{
     name: string;
@@ -13,6 +13,7 @@ const pages: Array<{
 }> = [
   { name: 'Home', path: '/', icon: HouseIcon, short: null },
   { name: 'About SUNForge Fest', path: '/about', icon: InfoIcon, short: null },
+  { name: 'E-Booklet', path: '/ebooklet.pdf', icon: BookDownIcon, short: null },
   { name: 'Organising Committee', path: '/committee', icon: VectorSquareIcon, short: null },
   { name: 'Final Year Projects', path: '/fyp', icon: null, short: 'FYP' },
   { name: 'Integrated Design Projects', path: '/idp', icon: null, short: 'IDP' },
