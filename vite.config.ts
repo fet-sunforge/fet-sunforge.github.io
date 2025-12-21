@@ -27,7 +27,7 @@ export default defineConfig({
         committee: path.resolve(__dirname, 'committee.html'),
         "m/poster": path.resolve(__dirname, 'm/poster.html'),
         vm: path.resolve(__dirname, 'vm.html'),
-        ebooklet: path.resolve(__dirname, 'ebooklet.pdf'),
+        ebooklet: path.resolve(__dirname, 'ebooklet.html'),
       }
     }
   }
