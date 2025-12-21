@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { getAssessedMarksMultipleCourses } from '@/lib/markingclient';
-import { ref, onMounted, computed } from 'vue';
+import { ref, computed } from 'vue';
 import { groupAssessedMarksBySubmission, type GroupedSubmission } from '@/lib/helpers';
 import ThemeFab from '@/components/ThemeFab.vue';
 import type { Course, Project } from '@/interfaces';
@@ -24,35 +24,38 @@ const componentOptions = {
   }
 }
 const component = ref<keyof typeof componentOptions|''>('poster');
-const rubric = ref<Rubric>(posterRubrics);
+const rubric = computed<Rubric|null>(() => {
+  if (!component.value) return null;
+  return componentOptions[component.value].rubric;
+});
 const courses = ref<string[]>([]);
 
 const result = ref<GroupedSubmission[]>([]);
 const projectdetails = ref<{ course: Course | null, project: Project | null }[]>([]);
-const totalMarks = ref<{assessors: number[], total: number}[]>([]);
+const totalMarks = computed<{assessors: number[], total: number}[]>(() => {
+  if (!component.value || !courses.value.length) return [];
+  return result.value.map((submission) => {
+    const { assessors, total } = calculateTotalMarks(rubric.value, submission);
+    return { assessors, total };
+  });
+});
 
 const loading = ref(false);
 
 const getMarks = async () => {
   if (!component.value || !courses.value.length) return;
   loading.value = true;
+  result.value = [];
+  projectdetails.value = [];
+
   result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
 
   await Promise.all(result.value.map((submission) => retrieveCourseProjectDetails(submission.course, submission.itemIndex)))
     .then((details) => {
       projectdetails.value = details;
-    }).then(() => {
-      result.value.forEach((submission) => {
-        const { assessors, total } = calculateTotalMarks(rubric.value, submission);
-        totalMarks.value.push({ assessors, total });
-      });
       loading.value = false;
     });
 }
-onMounted(async () => {
-  // await getMarks();
-  // result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
-})
 const sortKey = ref<'course' | 'student' | 'total' >('course');
 const sortOrderAsc = ref<boolean>(true);
 const sortedprojectindices = computed<number[]>(() => {
