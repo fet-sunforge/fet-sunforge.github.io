@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { getAssessedMarksMultipleCourses } from '@/lib/markingclient';
+import { getAssessedMarksMultipleCourses } from '@/lib/adminclient';
 import { ref, computed, onMounted } from 'vue';
 import { groupAssessedMarksBySubmission, type GroupedSubmission } from '@/lib/helpers';
 import ThemeFab from '@/components/ThemeFab.vue';
@@ -35,6 +35,8 @@ const handleLoginSuccess = (info: AdminInfo) => {
 const handleLogout = () => {
   clearAdminCode()
   admin.value = null
+  result.value = []
+  projectdetails.value = []
 }
 const afterLogin = async (info: AdminInfo) => {
   admin.value = info
@@ -72,7 +74,7 @@ const getMarks = async () => {
   result.value = [];
   projectdetails.value = [];
 
-  result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value));
+  result.value = groupAssessedMarksBySubmission(await getAssessedMarksMultipleCourses(component.value, courses.value, admin.value.admin));
 
   await Promise.all(result.value.map((submission) => retrieveCourseProjectDetails(submission.course, submission.itemIndex)))
     .then((details) => {
@@ -114,7 +116,6 @@ function compare(a: unknown, b: unknown) {
 </script>
 
 <template>
-{{admin}}
    <!-- <div>
     <pre>{{ result }}</pre>
   </div>
@@ -130,6 +131,13 @@ function compare(a: unknown, b: unknown) {
       <AdminLoginComponent @login-success="handleLoginSuccess" />
     </div>
     <template v-else>
+      <div class="flex flex-row w-full items-center gap-1 bg-accent p-2 pl-3 rounded">
+        <div class="flex-1">Logged in as {{ admin.name }}</div>
+        <Button
+          @click="handleLogout"
+          class="bg-red-500 hover:bg-red-700 text-white rounded"
+        >Logout</Button>
+      </div>
       <div class="flex flex-col w-full gap-2">
         <div class="flex flex-row gap-2">
           <div class="flex flex-col flex-1">
