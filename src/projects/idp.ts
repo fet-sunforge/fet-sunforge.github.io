@@ -30,9 +30,9 @@ export const courses = ref([{
   short: "IDP",
   code: "idp2",
   projects: [{
-    title: 'project 1',
+    title: 'Automated Growth Monitoring with Machine Vision',
     desc: '',
-    pic: ['Group 1']
+    pic: ['Ong Re Hong', 'Wong Jing Sian', 'Lai Zhen Yan']
   }, {
     title: 'project 2',
     desc: '',
