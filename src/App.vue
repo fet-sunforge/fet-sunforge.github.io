@@ -60,6 +60,7 @@ const awardlist = [{
         <div class="flex flex-row flex-wrap gap-2">
           <a href="/about"><Badge class="text-base px-3 py-1.5">About SUNForge Fest</Badge></a>
           <a href="/committee"><Badge class="text-base px-3 py-1.5">Organising Committee</Badge></a>
+          <a href="/ebooklet"><Badge class="text-base px-3 py-1.5">E-Booklet</Badge></a>
         </div>
 
         <Separator class="mt-5"/>
