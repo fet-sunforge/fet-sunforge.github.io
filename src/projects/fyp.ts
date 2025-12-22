@@ -117,7 +117,7 @@ export const courses = ref([{
     pic: ['Choo Xuan Liang']
   }, {
     title: 'Green Extraction and Recovery of Polar Volatile Compounds from Salvia officinalis Leaves',
-    desc: '',
+    desc: 'This study presents a comparative investigation between single-phase and biphasic solvent systems for the extraction of volatile compounds from Salvia officinalis (Sage) leaves. Organic solvents were employed in both systems to evaluate their efficiency in recovering key volatiles, with particular attention to solvent polarity. The extraction process was performed using an ultrasound-assisted water bath technique to enhance mass transfer and improve yield. To optimize the extraction conditions, Response Surface Methodology (RSM) was applied and relationship evaluated. The study aims to determine the most effective extraction system by comparing yield and composition of volatiles obtained, ultimately providing insights into greener methods for aromatic compound extraction from medicinal plants.',
     pic: ['Hooi Soong Ling']
   }, {
     title: 'Selective Enrichment of Non-Polar Volatile Compounds from Salvia officinalis Leaves',
@@ -129,11 +129,11 @@ export const courses = ref([{
     pic: ['Saw Chee Hong']
   }, {
     title: 'Towards a flexible distillation design: A design validation from process control perspective via Aspen Plus Dynamics',
-    desc: '',
+    desc: 'Environmental pressures to reduce energy consumption have intensified efforts to improve the design of distillation systems, which remain among the most energy-intensive unit operations in the chemical industry. While the Flexibility Index (FI) has been widely adopted to incorporate operational flexibility into steady-state design, most studies stop at steady-state optimisation and do not verify whether FI predictions remain valid under dynamic operation. Recent work validated FI using idealised composition control (CC), yet the applicability of FI under practical, industry-preferred temperature control (TC) remains unexplored. To address this gap, this study dynamically validates FI-incorporated distillation designs using temperature-based control strategies in Aspen Plus Dynamics. Two case studies reproduced from Chen et al. (2026) are investigated: conventional distillation of a propane/isobutane system and reactive distillation for butyl acetate esterification. Temperature-sensitive trays were identified via open-loop sensitivity analysis and paired using relative gain array (RGA) analysis, followed by dynamic testing under FI-level disturbances. The results show that standalone temperature control may fail to uphold FI predictions, whereas composition–temperature cascade control successfully restores product specifications and aligns with FI expectations for conventional distillation. In contrast, reactive distillation exhibits inconsistent FI–dynamic agreement due to strong nonlinear interactions among reaction kinetics, phase behaviour and control loops. These findings highlight key limitations of steady-state FI and dynamic convergence criteria in capturing operability constraints. Overall, this work bridges the gap between theoretical FI-based design and realistic control implementation, providing guidance for flexibility-oriented distillation design and motivating future FI extensions that incorporate dynamic and controller-dependent effects.',
     pic: ['Tan Chiao Pin']
   }, {
     title: 'Artificial Intelligence Applications in Air Quality Forecasting',
-    desc: '',
+    desc: 'Accurate air quality forecasting is critical for public health management, yet conventional “one-size-fits-all” preprocessing pipelines often compromise signal integrity of time-series air pollutant data without considering the physicochemical dynamics of air pollutants. This study addresses the research gap between statistical data profiling and model performance, specifically evaluating how preprocessing-induced shifts in data distribution impact Long Short-Term Memory (LSTM) and Extreme Gradient Boosting (XGBoost) architectures. Using hourly environmental data from Terengganu, Malaysia, this study compares the predictive performance between raw and preprocessed data for six air pollutants. The findings uncovered a distinct contrast where smoothing significantly improves LSTM accuracy for heavy-tailed Carbon Monoxide (CO) by preventing exploding gradients via gating mechanisms, while it negatively impacts XGBoost for stationary Particular Matter (PM2.5 and PM10) by compressing variance which hinders the split-finding algorithm. Additionally, robustness stress testing confirms that controlled noise injection in training data serves as an effective regularization strategy to mitigate overfitting in stationary datasets. This research concludes that air pollutant forecasting should abandon uniform preprocessing in favor of a statistically informed framework, selecting model architectures based on the specific statistical profile of the air pollutants to ensure predictive stability.',
     pic: ['Tan Xin Ming']
   }, {
     title: 'CO2 Capture and Sequestration: Principles and Simulation of a Supersonic Gas Conditioning System',
@@ -141,7 +141,7 @@ export const courses = ref([{
     pic: ['Xavier Henry']
   }, {
     title: 'Application of Microbial Electrolysis Cells in Enhancing Biogas and Hydrogen Yield from Palm Oil Mill Effluent Treatment',
-    desc: '',
+    desc: 'My study evaluates palm oil mill effluent (POME) as a feedstock for renewable biohydrogen while reducing wastewater strength. This work first optimises dark fermentation (DF) by testing initial pH 5–7 (37 °C, 3 days) and then integrates DF with a dual-chamber simultaneous dark fermentation–microbial electrolysis cell (sDFMEC) separated by a cation-exchange membrane as single stage process. The sDFMEC stage examines how applied voltage (0.6–1.0 V) and pH influence hydrogen yield, production rate, gas composition and COD removal, supporting process integration and improved resource recovery from POME.',
     pic: ['Yong Kai Yu']
   }]
 }] as Array<Course>);
