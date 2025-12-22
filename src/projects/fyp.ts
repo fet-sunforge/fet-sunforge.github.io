@@ -16,15 +16,15 @@ export const courses = ref([{
     desc: 'Physical Unclonable Functions (PUFs) are hardware primitives that exploit inherent manufacturing variations to generate unique and unclonable identifiers for secure device authentication. This project explores the feasibility of using off-the-shelf PCB antennas as a source of hardware uniqueness for security applications. Students will perform RF measurements of antenna parameters, including S11 (reflection), S12/S21 (transmission), under varying conditions to extract distinct response patterns. The collected data will be analyzed using machine learning techniques to evaluate uniqueness, reliability, and classification accuracy across devices. A proof-of-concept implementation will be developed to demonstrate how antenna-based PUFs can serve as a trust anchor for IoT device authentication.',
     pic: ['Cheryl Phun Tse Ying']
   }, {
-    title: 'Wireless IoT Attendance Tracking System Using RFID/NFC and Cloud',
+    title: 'RFID Attendance Tracking with ESP32, MFRC522 and Firebase',
     desc: 'Manual attendance in educational institutions is often time-consuming, error-prone, and prone to manipulation. This project proposes a wireless IoT-based attendance tracking system using RFID/NFC tags and cloud connectivity to improve efficiency, accuracy, and transparency. Each student will have an RFID/NFC-enabled ID card, and IoT readers (e.g., ESP32 with RFID/NFC module) at classroom entrances will automatically record attendance. Data will be transmitted via Wi-Fi or MQTT to a cloud platform (e.g., Firebase, AWS IoT), where it is securely stored and accessible through a web or mobile dashboard. The system will include real-time data visualization, automated reporting, and participation analysis. Expected outcomes are a working prototype that reduces administrative workload, minimizes errors, and showcases the role of IoT in modernizing educational practices.',
     pic: ['Jason Tek Chun Sheng']
   }, {
-    title: 'Gait control and IMU based balancing of a Quadruped Robot',
+    title: 'A Hybrid Motor-Pneumatic Actuation Approach for Improving Jumping Performance of a Proprioceptive Quadruped Robot Leg',
     desc: 'This FYP focuses on the design and implementation stable locomotion through gait control and real-time balancing on a quadruped robot. The system integrates an Inertial Measurement Unit (IMU) to provide orientation and acceleration data, for dynamic adjustments to maintain stability during walking. The project emphasizes control system design, sensor integration, and real-time feedback.',
     pic: ['Koh Ji Shin']
   }, {
-    title: 'Machine Learning-based Swing-up and Balancing Control of Inverted Pendulum from Sensor Fusion',
+    title: 'Machine Learning-based Swing-Up and Balancing Control of Inverted Pendulum from Sensor Fusion',
     desc: 'This project aims to investigate and implement non-contact sensor (laser, magnetic or vision) fusion techniques for the measurement of inverted pendulum pose to facilitate its control. Swing-up and balancing of the inverted pendulum is achieved through machine learning-based control. A digital twin model is developed to visualize the inverted pendulum pose. <br><br>The expected outcomes include prototype development of sensor fusion hardware, optimal control scheme and working digital twin model.',
     pic: ['Law Ka Qing']
   }, {
@@ -32,11 +32,11 @@ export const courses = ref([{
     desc: 'This project aims to deploy and conduct measurement of wireless LoRaWAN coverage, which aim to cover most part of Sunway City. The candidate will acquire few important technical skills in wireless planning, deployment and measurement by using several IoT platforms. This project is part of the plan to power up IoT nodes around Sunway City under Future Cities Research Institute ',
     pic: ['Lee Cheng Zhe']
   }, {
-    title: 'Smart Medicine Reminder and Dispenser',
+    title: 'IoT-based Smart Medicine Dispenser Machine with Secure Prescription & Telemedicine Support',
     desc: 'This project proposes the development of a Smart Medicine Reminder and Dispenser to help elderly and chronically ill patients take the correct medication at the right time. The system combines a microcontroller-based dispenser with audio-visual alerts and wireless connectivity (Bluetooth/Wi-Fi) for mobile app synchronization. Caregivers can remotely monitor adherence, adjust schedules, and receive notifications of missed doses, while dosage history is stored in the cloud for analysis. The expected outcome is a functional prototype that improves medication adherence, reduces caregiver workload, and enhances patient safety through an IoT-enabled healthcare solution.',
     pic: ['Lim Zhan Jin']
   }, {
-    title: 'Optical fiber sensing - Fibre optic based weight in motion system for vehicle monitoring',
+    title: 'Free Space Optic - Traffic Monitoring',
     desc: 'This project aims to design and analyze various parameters for optical fiber sensing in partnership with MIMOS Bukit Jalil. Computer algorithm for analysis of vehicle monitoring using fibre optic sensor.',
     pic: ['Ooi Wei Junn']
   }, {
@@ -44,7 +44,7 @@ export const courses = ref([{
     desc: 'This project aims to investigate and implement robotic hand-eye coordination for table tennis playing. Through visual input, the system is able to track table tennis ball position and execute robot arm motion to play table tennis. The expected outcomes include comprehensive vision systems to categorize and track ball movement as well as robot motion planning and execution.',
     pic: ['Tang Wei Liang']
   }, {
-    title: 'IoT-Based Platform for Monitoring and Analyzing the Growth of Vegetables Under Varying Environmental Conditions',
+    title: 'IoT-Based Platform for Monitoring and Analyzing the Growth of Vegetables in Hydroponic SYstems Under Varying Environmental Conditions',
     desc: 'This project aims to design an IoT-based platform that monitors environmental parameters such as temperature, humidity, soil moisture, light intensity, and CO2 levels to study their impact on vegetable growth. The system tracks plant growth using sensors and image processing, offering real-time data visualization through a web or mobile app. It incorporates a machine learning model to predict growth trends and provides alerts when environmental conditions fall outside optimal ranges. This platform promotes efficient agriculture by enabling users to optimize growing conditions, enhancing yield and health of crops.',
     pic: ['Trinity Koh Ee Syen']
   }, {
@@ -52,7 +52,7 @@ export const courses = ref([{
     desc: 'This project aims to explore how a decentralized MARL framework can improve efficiency, scalability, and robustness to solve engineering problems. We choose to implement and test the model on traffic signal control, a real-world scenario where multiple agents (traffic lights) must coordinate to optimize vehicle flow, reduce waiting times, and minimize congestion.',
     pic: ['Vincent Ooi Jian Kai']
   }, {
-    title: 'An Artificial Intelligence-Based Model to Determine the Water Content of Transformer Insulation Paper',
+    title: 'ML-Based Model to Determine the Water Content of Transformer Insulation Paper',
     desc: 'The project aims to develop an AI-based algorithm to predict the water content of paper in power transformer based on the characteristics and parameters of transformer oil. This prediction is crucial for the maintenance of power transformer without requiring total shut down of power transformer. <br><br> It is a project in collaboration with Tenaga Nasional Berhad (TNB) and TNB Research with the opportunity to work with Technical Expert / Specialist from TNB.',
     pic: ['Yap Meng Lok']
   }]
