@@ -1,3 +1,6 @@
+@import "geist/font/sans";
+@import "geist/font/mono";
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
