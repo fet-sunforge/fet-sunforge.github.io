@@ -1,5 +1,5 @@
-import "geist/dist/fonts/geist-sans/style.css";
-import "geist/dist/fonts/geist-mono/style.css";
+@import url("../node_modules/geist/dist/fonts/geist-sans/style.css");
+@import url("../node_modules/geist/dist/fonts/geist-mono/style.css");
 
 @import "tailwindcss";
 @import "tw-animate-css";
