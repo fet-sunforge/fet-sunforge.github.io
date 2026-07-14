@@ -59,7 +59,7 @@ const awardlist = [{
       <div class="flex flex-col items-center gap-2" style="margin-top: auto; margin-bottom: auto;">
         <a href="/about"><img src="./assets/logo.png" class="w-full max-w-xl" alt="Logo" /></a>
         <div>Coming in</div>
-        <Countdown deadlineISO="2025-12-23T09:00:00Z"
+        <Countdown deadlineISO="2026-08-06T09:30:00Z"
           mainColor="white"
           secondFlipColor="white"
           labelColor=""
